@@ -1,0 +1,28 @@
+.container{
+    background: #FAF9FE;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.header{
+    margin-top: 50px;
+}
+
+.header h1{
+    margin-bottom: 0px !important;
+    font-weight: 500;
+    font-size: 96px;
+}
+.header h3{
+    color: #99879D;
+    font-size: 20px;
+}
+
+.content button{
+    margin: 40px auto;
+    display: block;
+    width: 200px;
+}
+
