@@ -43,3 +43,43 @@ body { margin: 0; font-family: "Red Hat Display", Roboto, "Helvetica Neue", sans
     padding: 0 5px;
     width: 20%;
 }
+
+.m-0 {
+    margin:0px !important;
+}
+
+.mt-0{
+    margin-top: 0px !important;
+}
+
+.mt-1{
+    margin-top: 0.25rem;
+}
+
+.mt-2{
+    margin-top: 0.75rem;
+}
+
+.mt-3{
+    margin-top: 1rem;
+}
+
+.mt-4{
+    margin-top: 3rem;
+}
+
+.mt-n1{
+    margin-top: -0.25rem;
+}
+
+.mt-n2{
+    margin-top: -0.75rem;
+}
+
+.mt-n3{
+    margin-top: -1rem;
+}
+
+.mt-n4{
+    margin-top: -3rem;
+}

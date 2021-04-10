@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-center">
     <form id="cadastro-membro">
-        <h1>Informe os dados do [TIPO MEMBRO]</h1>
+        <h1 class="mat-title-1"><b>Informe os dados do membro principal</b></h1>
         <mat-form-field id='nome-completo' class="w-100">
             <mat-label>Nome Completo</mat-label>
             <input type="text" matInput [formControl]="nomeCompleto" placeholder="Ex. João da Silva">
@@ -10,15 +10,12 @@
         </mat-form-field>
         <mat-form-field id="email" class="w-100">
             <mat-label>Email</mat-label>
-            <input type="text" matInput [formControl]="email" placeholder="Ex. seuemail@dominio.com">
+            <input type="email" matInput [formControl]="email" placeholder="Ex. seuemail@dominio.com">
             <mat-error *ngIf="email.hasError('email')">
                 O email precisa ter um <strong>formato válido</strong>
             </mat-error>
-            <mat-error *ngIf="email.hasError('required')">
-                O email é <strong>obrigatório</strong>
-            </mat-error>
         </mat-form-field>
-        <div class="d-flex justify-content-around">
+        <div id="cpf-escolaridade" class="d-flex justify-content-around">
             <mat-form-field id="cpf" class="w-50">
                 <mat-label>CPF</mat-label>
                 <input type="text" matInput [formControl]="cpf" placeholder="Ex. 000.000.000-00">
@@ -26,13 +23,120 @@
                     O cpf é <strong>obrigatório</strong>
                 </mat-error>
             </mat-form-field>
-            <!-- TODO: transformar em seleção -->
             <mat-form-field id="escolaridade" class="w-50">
                 <mat-label>Escolaridade</mat-label>
-                <input type="text" matInput [formControl]="escolaridade" placeholder="Ex. fundamental">
+                <mat-select [formControl]="escolaridade">
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let e of escolaridadeOptions" [value]="e">
+                        {{e}}
+                    </mat-option>
+                </mat-select>
                 <mat-error *ngIf="escolaridade.hasError('required')">
-                    A escolaridade é <strong>obrigatória</strong>
+                    Por favor, selecione a esclaridade.
                 </mat-error>
+            </mat-form-field>
+        </div>
+        <div id="renda-profissao" class="d-flex justify-content-around">
+            <mat-form-field id="rendaTotalFamilia" class="w-50">
+                <mat-label>Renda total da família</mat-label>
+                <input type="number" matInput [formControl]="rendaTotalFamilia" placeholder="Ex. 500,00">
+                <mat-error *ngIf="rendaTotalFamilia.hasError('required')">
+                    A renda da família é <strong>obrigatória</strong>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-50">
+                <mat-label>Profissão</mat-label>
+                <input type="text" matInput [formControl]="profissao" placeholder="Ex. Marceneiro">
+                <mat-error *ngIf="profissao.hasError('required')">
+                    A profissão é <strong>obrigatória</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div id="cep-numero-edereco" class="d-flex justify-content-around">
+            <mat-form-field id="cep" class="w-50">
+                <mat-label>CEP</mat-label>
+                <input type="number" matInput [formControl]="cep" placeholder="Ex. 00.000-000">
+                <mat-error *ngIf="cep.hasError('required')">
+                    O CEP é <strong>obrigatório</strong>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-50">
+                <mat-label>Número Endereço</mat-label>
+                <input type="text" matInput [formControl]="enderecoNumero" placeholder="Ex. 67">
+                <mat-error *ngIf="enderecoNumero.hasError('required')">
+                    O número do endereço é <strong>obrigatório</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <mat-form-field id="endereco" class="w-100">
+            <mat-label>Endereço</mat-label>
+            <input type="text" matInput [formControl]="endereco" placeholder="Ex. R. Adamantina">
+            <mat-error *ngIf="endereco.hasError('required')">
+                O endereço é <strong>obrigatório</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field id="complemento-endereco" class="w-100">
+            <mat-label>Complemento endereço</mat-label>
+            <input type="text" matInput [formControl]="enderecoComplemento" placeholder="Ex. R. Adamantina">
+            <mat-error *ngIf="enderecoComplemento.hasError('required')">
+                O complemento do endereço é <strong>obrigatório</strong>
+            </mat-error>
+        </mat-form-field>
+        <div id="Cidade-UF" class="d-flex justify-content-around">
+            <mat-form-field id="cep" class="w-50">
+                <mat-label>CEP</mat-label>
+                <input type="number" matInput [formControl]="cep" placeholder="Ex. 00.000-000">
+                <mat-error *ngIf="cep.hasError('required')">
+                    O CEP é <strong>obrigatório</strong>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-50">
+                <mat-label>UF</mat-label>
+                <mat-select [formControl]="uf">
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let e of ufOptions" [value]="e">
+                        {{e}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="uf.hasError('required')">
+                    Por favor, selecione o estado.
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div id='estado-civil-genero' class="d-flex">
+            <mat-form-field id="estado-civil" class="w-50">
+                <mat-label>Estado Civil</mat-label>
+                <mat-select [formControl]="estadoCivil">
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let e of estadoCivilOptions" [value]="e">
+                        {{e}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="estadoCivil.hasError('required')">
+                    Por favor, selecione um estado civil
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field id="genero" class="w-50">
+                <mat-label>Gênero</mat-label>
+                <mat-select [formControl]="genero">
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let e of generoOptions" [value]="e">
+                        {{e}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="genero.hasError('required')">
+                    Por favor, selecione um gênero
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div id="data-nascimento-telefone-celular" class="d-flex">
+            <mat-form-field id="data-nascimento" class="w-50">
+                <mat-label>Data de nascimento</mat-label>
+                <input type="date" matInput [formControl]="dataNascimento" placeholder="Ex. 29/12/2000">
+            </mat-form-field>
+            <mat-form-field id="telefone-celular" class="w-50">
+                <mat-label>Telefone/Celular</mat-label>
+                <input type="tel" matInput [formControl]="telefoneCelular" placeholder="Ex. 99999-9999">
             </mat-form-field>
         </div>
     </form>
