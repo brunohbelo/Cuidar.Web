@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -9,6 +9,8 @@ import { FormControl, Validators } from '@angular/forms';
 export class MembroFamiliaComponent implements OnInit {
 
   constructor() { }
+
+  @Input() model: any;
 
   escolaridadeOptions = ['Fundamental incompleto', 'Fundamental completo', 'Médio incompleto', 'Médio completo', 'Superior incompleto', 'Superior completo'];
   estadoCivilOptions = ['Solteiro(a)', 'Casado(a) Civil', 'Casado(a) Religioso', 'Amasiado(a)', 'Separado(a)', 'Viúvo(a)'];
