@@ -1,0 +1,39 @@
+<div class="d-flex justify-content-center">
+    <form id="cadastro-membro">
+        <h1>Informe os dados do [TIPO MEMBRO]</h1>
+        <mat-form-field id='nome-completo' class="w-100">
+            <mat-label>Nome Completo</mat-label>
+            <input type="text" matInput [formControl]="nomeCompleto" placeholder="Ex. João da Silva">
+            <mat-error *ngIf="nomeCompleto.hasError('required')">
+                Nome completo é <strong>obrigatório</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field id="email" class="w-100">
+            <mat-label>Email</mat-label>
+            <input type="text" matInput [formControl]="email" placeholder="Ex. seuemail@dominio.com">
+            <mat-error *ngIf="email.hasError('email')">
+                O email precisa ter um <strong>formato válido</strong>
+            </mat-error>
+            <mat-error *ngIf="email.hasError('required')">
+                O email é <strong>obrigatório</strong>
+            </mat-error>
+        </mat-form-field>
+        <div class="d-flex justify-content-around">
+            <mat-form-field id="cpf" class="w-50">
+                <mat-label>CPF</mat-label>
+                <input type="text" matInput [formControl]="cpf" placeholder="Ex. 000.000.000-00">
+                <mat-error *ngIf="cpf.hasError('required')">
+                    O cpf é <strong>obrigatório</strong>
+                </mat-error>
+            </mat-form-field>
+            <!-- TODO: transformar em seleção -->
+            <mat-form-field id="escolaridade" class="w-50">
+                <mat-label>Escolaridade</mat-label>
+                <input type="text" matInput [formControl]="escolaridade" placeholder="Ex. fundamental">
+                <mat-error *ngIf="escolaridade.hasError('required')">
+                    A escolaridade é <strong>obrigatória</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </form>
+</div>

@@ -1,11 +1,10 @@
-<div class="container">
-    <div class="header">
-        <h1 class="mat-display-4">Cuidar</h1>
-        <h3>O que deseja fazer?</h3>
-    </div>
-    <div class="content">
-        <button mat-flat-button color="primary">Cadastrar família</button>
-        <button mat-flat-button color="primary">Buscas assistido</button>
-        <button mat-flat-button color="primary">Ver estatísticas</button>
-    </div>
+<div class="header">
+    <h1 class="mat-display-4">Cuidar</h1>
+    <h3>O que deseja fazer?</h3>
+</div>
+<div class="content">
+    <button [routerLink]="['/cadastro-familia']" routerLinkActive="router-link-active" mat-flat-button
+        color="primary">Cadastrar família</button>
+    <button mat-flat-button color="primary">Buscas assistido</button>
+    <button mat-flat-button color="primary">Ver estatísticas</button>
 </div>
