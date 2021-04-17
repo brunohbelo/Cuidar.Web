@@ -1,0 +1,15 @@
+import { FamilyMemberLinkType } from './enums/FamilyMemberLinkType';
+import { FamilyMember } from './FamilyMember';
+import { MainFamilyMember } from './MainFamilyMember';
+
+export class DependentFamilyMember extends FamilyMember {
+
+    constructor(mainFamilyMember: MainFamilyMember) {
+        super();
+        this.mainFamilyMember = mainFamilyMember;
+    }
+
+    public linkTypeToMainMember: FamilyMemberLinkType | undefined;
+
+    public mainFamilyMember: MainFamilyMember;
+}

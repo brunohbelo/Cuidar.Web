@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FamilyMember } from 'src/app/models/FamilyMember';
+import { MainFamilyMember } from 'src/app/models/MainFamilyMember';
 
 @Component({
   selector: 'app-cadastro-familia',
@@ -7,18 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CadastroFamiliaComponent implements OnInit {
 
-  constructor() { }
-
   membros = new Array<any>();
-  membroAdicionando: any;
+  public membroAdicionando: FamilyMember;
 
   ngOnInit(): void {
-    this.membroAdicionando = {};
+
   }
 
-  incluirMembro(): void {
-    this.membros.push(Object.assign({}, this.membroAdicionando));
-    this.membroAdicionando = {};
+  constructor() {
+    this.membroAdicionando = new MainFamilyMember();
+  }
+
+  incluirMembro(familyMember: FamilyMember): void {
+    this.membros.push(Object.assign({}, familyMember));
   }
 
 }
