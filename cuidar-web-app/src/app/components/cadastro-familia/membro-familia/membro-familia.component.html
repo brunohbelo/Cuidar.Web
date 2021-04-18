@@ -40,7 +40,7 @@
             <div id="renda-occupation" class="d-flex justify-content-around">
                 <mat-form-field id="rendaTotalFamilia" class="w-50">
                     <mat-label>Renda total da família</mat-label>
-                    <input type="number" matInput formControlName="economicSituationNotes" placeholder="Ex. 500,00">
+                    <input type="text" matInput formControlName="economicSituationNotes" placeholder="Ex. 500,00">
                     <mat-error *ngIf="formMembroFamilia.controls['economicSituationNotes'].hasError('required')">
                         A renda da família é <strong>obrigatória</strong>
                     </mat-error>
