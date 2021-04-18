@@ -1,13 +1,13 @@
 import { FamilyMemberCivilStatus } from './enums/FamilyMemberCivilStatus';
 import { FamilyMemberHousingType } from './enums/FamilyMemberHousingType';
 import { FamilyMemberSchooling } from './enums/FamilyMemberSchooling';
+import { FamilyMemberType } from './enums/FamilyMemberType';
 import { FamilyMember } from './FamilyMember';
 
 export class MainFamilyMember extends FamilyMember {
 
     constructor() {
         super();
-        this.documentId = '';
         this.addressPostalCode = '';
         this.addressStreetName = '';
         this.addressStreetNumber = '';
@@ -20,9 +20,9 @@ export class MainFamilyMember extends FamilyMember {
         this.contactEmail = '';
         this.housingTypeNotes = '';
         this.economicSituationNotes =  '';
+        this.familyMemberType = FamilyMemberType.Main;
     }
 
-    documentId: string;
     public addressPostalCode: string;
     public addressStreetName: string;
     public addressStreetNumber!: string;
@@ -37,5 +37,4 @@ export class MainFamilyMember extends FamilyMember {
     public housingType: FamilyMemberHousingType | undefined;
     public housingTypeNotes: string;
     public economicSituationNotes: string;
-
 }

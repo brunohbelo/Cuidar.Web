@@ -1,0 +1,18 @@
+<div class="family-member-resume-container w-100 p-1 mb-2">
+    <div class="d-flex"  (click)="familyMemberResumeClicked()">
+        <div class="w-20 d-flex align-center justify-content-center">
+            <mat-icon>account_circle</mat-icon>
+        </div>
+        <div class="w-80 d-flex">
+            <div class="w-80 text-left">
+                <div class="mat-title-2">{{model.fullName}}</div>
+                <div>CPF {{model.documentId}}</div>
+                <div><b>{{model.FamilyMemberType}}</b></div>
+            </div>
+            <div class="w-20 align-center text-rigth">
+                <mat-icon>arrow_drop_down</mat-icon>
+            </div>
+        </div>
+    </div>
+    <hr/>
+</div>

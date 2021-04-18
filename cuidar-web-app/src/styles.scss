@@ -3,6 +3,19 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: "Red Hat Display", Roboto, "Helvetica Neue", sans-serif; }
 
+$firstRem: 0.25rem;
+$secondRem: 0.75rem;
+$tirdhRem: 1rem;
+$forthRem: 3rem;
+
+.text-left{
+    text-align: left;
+}
+
+.text-right{
+    text-align: right;
+}
+
 .d-flex{
     display: flex;
 }
@@ -17,6 +30,14 @@ body { margin: 0; font-family: "Red Hat Display", Roboto, "Helvetica Neue", sans
 
 .justify-content-around{
     justify-content: space-around;
+}
+
+.align-center{
+    align-items: center;
+}
+
+.align-end{
+    align-items: flex-end;
 }
 
 .w-100{
@@ -44,6 +65,24 @@ body { margin: 0; font-family: "Red Hat Display", Roboto, "Helvetica Neue", sans
     width: calc(20% - 10px);
 }
 
+
+.p-1{
+    padding: $firstRem;
+}
+
+.p-2{
+    padding: $secondRem;
+}
+
+.p-3{
+    padding: $tirdhRem;
+}
+
+.p-4{
+    padding: $forthRem;
+}
+
+
 .m-auto{
     margin: 0 auto;
 }
@@ -57,35 +96,56 @@ body { margin: 0; font-family: "Red Hat Display", Roboto, "Helvetica Neue", sans
 }
 
 .mt-1{
-    margin-top: 0.25rem;
+    margin-top: $firstRem;
 }
 
 .mt-2{
-    margin-top: 0.75rem;
+    margin-top: $secondRem;
 }
 
 .mt-3{
-    margin-top: 1rem;
+    margin-top: $tirdhRem;
 }
 
 .mt-4{
-    margin-top: 3rem;
+    margin-top: $forthRem;
 }
 
 .mt-n1{
-    margin-top: -0.25rem;
+    margin-top: -$firstRem;
 }
 
 .mt-n2{
-    margin-top: -0.75rem;
+    margin-top: -$secondRem;
 }
 
 .mt-n3{
-    margin-top: -1rem;
+    margin-top: -$tirdhRem;
 }
 
 .mt-n4{
-    margin-top: -3rem;
+    margin-top: -$forthRem;
+}
+
+
+.mb-0{
+    margin-bottom: 0px !important;
+}
+
+.mb-1{
+    margin-bottom: $firstRem;
+}
+
+.mb-2{
+    margin-bottom: $secondRem;
+}
+
+.mb-3{
+    margin-bottom: $tirdhRem;
+}
+
+.mb-4{
+    margin-bottom: $forthRem;
 }
 
 .rotate-90{

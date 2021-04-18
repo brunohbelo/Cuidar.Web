@@ -17,6 +17,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { FamilyMemberResumeComponent } from './components/family-member-resume/family-member-resume/family-member-resume.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     HomeComponent,
     NavBarComponent,
     CadastroFamiliaComponent,
-    MembroFamiliaComponent
+    MembroFamiliaComponent,
+    FamilyMemberResumeComponent
   ],
   imports: [
     BrowserModule,

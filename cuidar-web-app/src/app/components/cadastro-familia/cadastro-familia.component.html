@@ -1,20 +1,12 @@
 <div class="cadastro-familia-container m-auto">
     <div id="conteudo">
         <app-nav-bar></app-nav-bar>
-        <div *ngFor="let membro of membros" class="d-flex">
-            <div class="w-20">
-                img.jpg
-            </div>
-            <div class="w-80">
-                <div class="title-2">[NOME MEMBRO]</div>
-                <div class="title-2">[CPF]</div>
-            </div>
+        <div *ngFor="let familyMember of membros" class="">
+            <app-family-member-resume [model]="familyMember" (familyMemberClick)="editMember($event)" ></app-family-member-resume>
         </div>
         <div>
-            <app-membro-familia [model]="membroAdicionando"></app-membro-familia>
+            <app-membro-familia [Model]="activeEditingMember" (saveMember)="incluirMembro($event)"></app-membro-familia>
         </div>
-
-        
         <div class="mt-3">
             <button mat-flat-button color="primary">Família completa</button>
         </div>
