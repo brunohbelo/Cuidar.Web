@@ -18,6 +18,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FamilyMemberResumeComponent } from './components/family-member-resume/family-member-resume/family-member-resume.component';
+import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -34,12 +36,14 @@ import { FamilyMemberResumeComponent } from './components/family-member-resume/f
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     MatButtonModule,
     MatInputModule,
     MatSelectModule,
     MatExpansionModule,
     MatIconModule,
     MatSnackBarModule,
+    RxReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],

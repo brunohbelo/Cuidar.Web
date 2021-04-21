@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { DependentFamilyMember } from 'src/app/models/DependentFamilyMember';
 import { FamilyMemberCivilStatus } from 'src/app/models/enums/FamilyMemberCivilStatus';
 import { FamilyMemberGender } from 'src/app/models/enums/FamilyMemberGender';
 import { FamilyMemberHousingType } from 'src/app/models/enums/FamilyMemberHousingType';
 import { FamilyMemberSchooling } from 'src/app/models/enums/FamilyMemberSchooling';
+import { FamilyMemberType } from 'src/app/models/enums/FamilyMemberType';
 import { FamilyMember } from 'src/app/models/FamilyMember';
 import { MainFamilyMember } from 'src/app/models/MainFamilyMember';
+import { MainFamilyMemberSerivce } from 'src/app/services/mainFamilyMember.service';
 
 @Component({
   selector: 'app-cadastro-familia',
@@ -21,9 +24,9 @@ export class CadastroFamiliaComponent implements OnInit {
 
   }
 
-  constructor() {
+  constructor(private mainFamilyMemberService: MainFamilyMemberSerivce, private snackBar: MatSnackBar) {
     this.activeEditingMember = new MainFamilyMember();
-    // this.initMemberTest();
+    this.initMemberTest();
   }
 
   incluirMembro(familyMember: FamilyMember): void {
@@ -39,6 +42,26 @@ export class CadastroFamiliaComponent implements OnInit {
     const currentIndex = this.membros.findIndex(x => x === familyMember);
     this.membros.splice(currentIndex, 1);
     this.activeEditingMember = Object.assign({}, familyMember);
+  }
+
+  public saveFamily(): void {
+    const mainMember = this.membros.find(x => x.familyMemberType === FamilyMemberType.Main) as MainFamilyMember;
+    if (!mainMember) {
+      this.snackBar.open('Para salvar o cadastro de família é necessário informar um membro principal', '', { duration: 5000 });
+      return;
+    }
+
+    this.mainFamilyMemberService.postMainFamilyMember(mainMember).subscribe(
+      data => {
+        console.log(data);
+        this.snackBar.open('Família Salva com sucesso', '', { duration: 5000 });
+      },
+      error => {
+        console.log(error);
+        this.snackBar.open('Erro ao salvar família', '', { duration: 5000 });
+      }
+    );
+
   }
 
   initMemberTest(): void {

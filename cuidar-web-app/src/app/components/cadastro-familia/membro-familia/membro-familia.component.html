@@ -1,6 +1,7 @@
 <div>
-    <form id="cadastro-membro" [formGroup]="formMembroFamilia">
+    <form id="cadastro-membro" [formGroup]="formMembroFamilia" (ngSubmit)="submitForm($event)">
         <h1 class="mat-title-1"><b>Informe os dados do membro {{familyMemberTypeDescription}}</b></h1>
+
         <section id="membro-principal" *ngIf="Model.familyMemberType === familyMemberType.Main">
             <mat-form-field id='nome-completo' class="w-100">
                 <mat-label>Nome Completo</mat-label>
@@ -46,10 +47,10 @@
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field class="w-50">
-                    <mat-label>Profissão</mat-label>
+                    <mat-label>Ocupação</mat-label>
                     <input type="text" matInput formControlName="occupation" placeholder="Ex. Marceneiro">
                     <mat-error *ngIf="formMembroFamilia.controls['occupation'].hasError('required')">
-                        A profissão é <strong>obrigatória</strong>
+                        A ocupação é <strong>obrigatória</strong>
                     </mat-error>
                 </mat-form-field>
             </div>
@@ -98,6 +99,15 @@
                     </mat-error>
                 </mat-form-field>
             </div>
+            <mat-form-field id="housingTypeNotes" *ngIf="formMembroFamilia.controls['housingType'].value === housingOptions.Other" class="w-100">
+                <mat-label>Descrição da moradia</mat-label>
+                <textarea matInput formControlName="housingTypeNotes" cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5">
+                    </textarea>
+                <mat-error *ngIf="formMembroFamilia.controls['housingTypeNotes'].hasError('required')">
+                    Por favor, informe uma descrição para a moradia.
+                </mat-error>
+            </mat-form-field>
             <div id="Cidade-UF" class="d-flex justify-content-around">
                 <mat-form-field id="addressCity" class="w-50">
                     <mat-label>Cidade</mat-label>
@@ -156,7 +166,8 @@
                 </mat-form-field>
             </div>
         </section>
-        <section id="membro-principal" *ngIf="Model.familyMemberType === familyMemberType.Dependent">
+
+        <section id="membro-dependente" *ngIf="Model.familyMemberType === familyMemberType.Dependent">
             <mat-form-field id="linkTypeToMainMember" class="w-100">
                 <mat-label>Parentesco</mat-label>
                 <mat-select matNativeControl formControlName="linkTypeToMainMember">
@@ -196,10 +207,10 @@
             </div>
             <div class="w-100">
                 <mat-form-field class="w-50">
-                    <mat-label>Profissão</mat-label>
+                    <mat-label>Ocupação</mat-label>
                     <input type="text" matInput formControlName="occupation" placeholder="Ex. Marceneiro">
                     <mat-error *ngIf="formMembroFamilia.controls['occupation'].hasError('required')">
-                        A profissão é <strong>obrigatória</strong>
+                        A ocupação é <strong>obrigatória</strong>
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field id="cpf" class="w-50">
@@ -211,10 +222,12 @@
                 </mat-form-field>
             </div>
         </section>
+
         <div>
             <h1 class="mat-title-1 m-0">Adicionar membro da família</h1>
-            <button (click)="adicionarMembro_click()" mat-mini-fab class="mt-n3" color="primary"><span
+            <button type="submit" mat-mini-fab class="mt-n3" color="primary"><span
                     class="mat-title-1">+</span></button>
         </div>
+
     </form>
 </div>

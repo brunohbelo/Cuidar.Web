@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, NgZone, OnInit, Output, ViewChild, ViewChildren } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FamilyMemberCivilStatus } from 'src/app/models/enums/FamilyMemberCivilStatus';
 import { FamilyMemberGender } from 'src/app/models/enums/FamilyMemberGender';
@@ -10,7 +10,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MainFamilyMember } from 'src/app/models/MainFamilyMember';
 import { FamilyMemberType } from 'src/app/models/enums/FamilyMemberType';
 import { DependentFamilyMember } from 'src/app/models/DependentFamilyMember';
-import { ThisReceiver } from '@angular/compiler';
+import { take } from 'rxjs/operators';
+import { CdkTextareaAutosize } from '@angular/cdk/text-field';
+import { RxwebValidators } from '@rxweb/reactive-form-validators';
 
 @Component({
   selector: 'app-membro-familia',
@@ -19,6 +21,7 @@ import { ThisReceiver } from '@angular/compiler';
 })
 export class MembroFamiliaComponent implements OnInit {
 
+  // Declaração de imputs, outputs
   private model!: FamilyMember;
   @Input() set Model(value: FamilyMember) {
     this.model = value;
@@ -29,11 +32,10 @@ export class MembroFamiliaComponent implements OnInit {
   get Model(): FamilyMember {
     return this.model;
   }
-
   @Output() saveMember = new EventEmitter<FamilyMember>();
 
-  public formMembroFamilia!: FormGroup;
-  public familyMemberTypeDescription = '';
+  formMembroFamilia!: FormGroup;
+  familyMemberTypeDescription = '';
   schoolingOptions = FamilyMemberSchooling;
   civilStatusOptions = FamilyMemberCivilStatus;
   generoOptions = FamilyMemberGender;
@@ -42,7 +44,13 @@ export class MembroFamiliaComponent implements OnInit {
   familyMemberType = FamilyMemberType;
   ufOptions = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO', 'DF'];
 
-  constructor(private snackBar: MatSnackBar) {
+  @ViewChildren('autosize') autosize!: CdkTextareaAutosize;
+  triggerResize(): void {
+    this.ngZone.onStable.pipe(take(1)).subscribe(() => this.autosize.resizeToFitContent(true));
+  }
+
+
+  constructor(private snackBar: MatSnackBar, private ngZone: NgZone) {
   }
 
   ngOnInit(): void {
@@ -56,6 +64,8 @@ export class MembroFamiliaComponent implements OnInit {
     } else {
       this.addDependentMemberFormControls();
     }
+
+    console.log(this.formMembroFamilia);
 
   }
 
@@ -79,6 +89,13 @@ export class MembroFamiliaComponent implements OnInit {
     this.formMembroFamilia.addControl('addressStreetComplement', new FormControl(mainModel.addressStreetComplement, [Validators.required]));
     this.formMembroFamilia.addControl('addressPostalCode', new FormControl(mainModel.addressPostalCode, [Validators.required]));
     this.formMembroFamilia.addControl('housingType', new FormControl(mainModel.housingType, [Validators.required]));
+    this.formMembroFamilia.addControl('housingTypeNotes', new FormControl(mainModel.housingType, [
+      RxwebValidators.required({
+        conditionalExpression: () => {
+          return (this.formMembroFamilia.controls.housingType.value === this.housingOptions.Other);
+        }
+      })
+    ]));
     this.formMembroFamilia.addControl('civilStatus', new FormControl(mainModel.civilStatus, [Validators.required]));
     this.formMembroFamilia.addControl('schooling', new FormControl(mainModel.schooling, [Validators.required]));
     this.formMembroFamilia.addControl('contactEmail', new FormControl(mainModel.contactEmail, [Validators.email]));
@@ -92,10 +109,11 @@ export class MembroFamiliaComponent implements OnInit {
     this.formMembroFamilia.addControl('linkTypeToMainMember', new FormControl(dependentModel.linkTypeToMainMember, [Validators.required]));
   }
 
-  public adicionarMembro_click(): void {
+  public submitForm($event: any): void {
 
     if (this.formMembroFamilia.invalid) {
       this.snackBar.open('', 'Informe os dados obrigatórios para continuar', { duration: 2000 });
+      this.formMembroFamilia.markAsDirty();
       return;
     }
 
@@ -106,6 +124,9 @@ export class MembroFamiliaComponent implements OnInit {
     this.snackBar.open('Sucesso', '', { duration: 2000 });
     this.saveMember.emit(this.Model);
     this.scrollToForm();
+
+    $event.currentTarget.reset();
+    this.formMembroFamilia.reset();
 
     return;
   }
