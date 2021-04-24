@@ -19,7 +19,6 @@ export class MainFamilyMemberSerivce {
 
     public postMainFamilyMember(mainFamilyMember: MainFamilyMember): Observable<any> {
 
-        debugger;
         // tslint:disable-next-line:prefer-const
         let mainMemberFamilyPost: any = {};
         Object.assign(mainMemberFamilyPost, mainFamilyMember);
