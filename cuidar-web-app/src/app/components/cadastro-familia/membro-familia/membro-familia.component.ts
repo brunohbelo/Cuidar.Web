@@ -33,6 +33,7 @@ export class MembroFamiliaComponent implements OnInit {
     return this.model;
   }
   @Output() saveMember = new EventEmitter<FamilyMember>();
+  @Output() saveMemberAndSubmitFamily = new EventEmitter<FamilyMember | null>();
 
   formMembroFamilia!: FormGroup;
   familyMemberTypeDescription = '';
@@ -64,8 +65,6 @@ export class MembroFamiliaComponent implements OnInit {
     } else {
       this.addDependentMemberFormControls();
     }
-
-    console.log(this.formMembroFamilia);
 
   }
 
@@ -111,27 +110,52 @@ export class MembroFamiliaComponent implements OnInit {
 
   public submitForm($event: any): void {
 
-    if (this.formMembroFamilia.invalid) {
+    if (!this.formIsValid()) {
       this.snackBar.open('', 'Informe os dados obrigatórios para continuar', { duration: 2000 });
       this.formMembroFamilia.markAsDirty();
       return;
     }
 
-    Object.entries(this.formMembroFamilia.getRawValue()).forEach(([key, value]) => {
-      (this.model as any)[key] = value;
-    });
+    this.fillModelWithForm();
 
     this.snackBar.open('Sucesso', '', { duration: 2000 });
-    this.saveMember.emit(this.Model);
-    this.scrollToForm();
 
-    $event.currentTarget.reset();
-    this.formMembroFamilia.reset();
+    if ($event.submitter.id === 'btn-adicionar-membro') {
+      this.saveMember.emit(this.Model);
+    } else if ($event.submitter.id === 'btn-familia-completa') {
+      this.saveMemberAndSubmitFamily.emit(this.Model.fullName !== '' ? this.model : null);
+    }
+
+    this.scrollToForm();
+    this.resetForm($event);
 
     return;
   }
 
-  scrollToForm(): void {
+  private formIsValid(): boolean {
+    if (this.Model.familyMemberType === FamilyMemberType.Main && this.formMembroFamilia.invalid) {
+      return false;
+    } else if (this.Model.familyMemberType === this.familyMemberType.Dependent && this.formMembroFamilia.touched
+      && this.formMembroFamilia.invalid) {
+      return false;
+    } else {
+      return true;
+    }
+
+  }
+
+  private resetForm($event: any): void {
+    $event.currentTarget.reset();
+    this.formMembroFamilia.reset();
+  }
+
+  private fillModelWithForm(): void {
+    Object.entries(this.formMembroFamilia.getRawValue()).forEach(([key, value]) => {
+      (this.model as any)[key] = value;
+    });
+  }
+
+  private scrollToForm(): void {
     const element = document.querySelector('form') || window;
     element.scrollTo(0, 0);
   }

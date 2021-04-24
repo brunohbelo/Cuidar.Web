@@ -29,7 +29,13 @@ export class CadastroFamiliaComponent implements OnInit {
     this.initMemberTest();
   }
 
-  incluirMembro(familyMember: FamilyMember): void {
+  editMember(familyMember: FamilyMember): void {
+    const currentIndex = this.membros.findIndex(x => x === familyMember);
+    this.membros.splice(currentIndex, 1);
+    this.activeEditingMember = Object.assign({}, familyMember);
+  }
+
+  saveFamilyMember(familyMember: FamilyMember): void {
     this.membros.push(Object.assign({}, familyMember));
 
     if (this.membros.length > 0) {
@@ -38,10 +44,11 @@ export class CadastroFamiliaComponent implements OnInit {
 
   }
 
-  editMember(familyMember: FamilyMember): void {
-    const currentIndex = this.membros.findIndex(x => x === familyMember);
-    this.membros.splice(currentIndex, 1);
-    this.activeEditingMember = Object.assign({}, familyMember);
+  saveMemberAndSubmitFamily(familyMember: FamilyMember | null): void {
+    if (familyMember) {
+      this.saveFamilyMember(familyMember);
+    }
+    this.saveFamily();
   }
 
   public saveFamily(): void {

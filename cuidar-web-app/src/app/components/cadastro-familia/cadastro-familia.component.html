@@ -5,11 +5,8 @@
             <app-family-member-resume [model]="familyMember" (familyMemberClick)="editMember($event)" ></app-family-member-resume>
         </div>
         <div>
-            <app-membro-familia [Model]="activeEditingMember" (saveMember)="incluirMembro($event)"></app-membro-familia>
+            <app-membro-familia [Model]="activeEditingMember" (saveMember)="saveFamilyMember($event)" (saveMemberAndSubmitFamily)="saveMemberAndSubmitFamily($event)">
+            </app-membro-familia>
         </div>
-        <div class="mt-3">
-            <button mat-flat-button (click)="saveFamily()" color="primary">Família completa</button>
-        </div>
-
     </div>
 </div>

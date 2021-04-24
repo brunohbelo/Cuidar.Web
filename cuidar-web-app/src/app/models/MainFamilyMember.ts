@@ -15,6 +15,7 @@ export class MainFamilyMember extends FamilyMember {
         this.addressState = '';
         this.civilStatus = FamilyMemberCivilStatus.Single;
         this.schooling = FamilyMemberSchooling.Basic;
+        this.housingType = FamilyMemberHousingType.Rent;
         this.addressStreetComplement = '';
         this.contactPhoneNumber = '';
         this.contactEmail = '';
@@ -34,7 +35,7 @@ export class MainFamilyMember extends FamilyMember {
     public addressStreetComplement: string;
     public contactPhoneNumber: string;
     public contactEmail: string;
-    public housingType: FamilyMemberHousingType | undefined;
+    public housingType: FamilyMemberHousingType;
     public housingTypeNotes: string;
     public economicSituationNotes: string;
 }
