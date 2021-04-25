@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { DependentFamilyMember } from 'src/app/models/DependentFamilyMember';
 import { FamilyMemberCivilStatus } from 'src/app/models/enums/FamilyMemberCivilStatus';
 import { FamilyMemberGender } from 'src/app/models/enums/FamilyMemberGender';
@@ -19,17 +20,20 @@ export class CadastroFamiliaComponent implements OnInit {
 
   membros = new Array<FamilyMember>();
   public activeEditingMember: FamilyMember;
+  public familyCompleted = false;
+  public socialAssistenceNeedsNotes = '';
 
   ngOnInit(): void {
 
   }
 
-  constructor(private mainFamilyMemberService: MainFamilyMemberSerivce, private snackBar: MatSnackBar) {
+  constructor(private mainFamilyMemberService: MainFamilyMemberSerivce, private snackBar: MatSnackBar, private router: Router) {
     this.activeEditingMember = new MainFamilyMember();
-    this.initMemberTest();
+    // this.initMemberTest();
   }
 
   editMember(familyMember: FamilyMember): void {
+    this.familyCompleted = false;
     const currentIndex = this.membros.findIndex(x => x === familyMember);
     this.membros.splice(currentIndex, 1);
     this.activeEditingMember = Object.assign({}, familyMember);
@@ -48,20 +52,25 @@ export class CadastroFamiliaComponent implements OnInit {
     if (familyMember) {
       this.saveFamilyMember(familyMember);
     }
-    this.saveFamily();
-  }
 
-  public saveFamily(): void {
     const mainMember = this.membros.find(x => x.familyMemberType === FamilyMemberType.Main) as MainFamilyMember;
     if (!mainMember) {
       this.snackBar.open('Para salvar o cadastro de família é necessário informar um membro principal', '', { duration: 5000 });
       return;
     }
 
+    this.familyCompleted = true;
+  }
+
+  public postFamily(): void {
+
+    const mainMember = this.membros.find(x => x.familyMemberType === FamilyMemberType.Main) as MainFamilyMember;
+    mainMember.socialAssistenceNeedsNotes = this.socialAssistenceNeedsNotes;
     this.mainFamilyMemberService.postMainFamilyMember(mainMember).subscribe(
       data => {
         console.log(data);
         this.snackBar.open('Família Salva com sucesso', '', { duration: 5000 });
+        this.router.navigate(['']);
       },
       error => {
         console.log(error);

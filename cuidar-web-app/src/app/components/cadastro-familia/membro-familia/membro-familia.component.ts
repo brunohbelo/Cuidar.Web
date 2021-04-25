@@ -110,38 +110,43 @@ export class MembroFamiliaComponent implements OnInit {
 
   public submitForm($event: any): void {
 
-    if (!this.formIsValid()) {
+    const showSnackError = () => {
       this.snackBar.open('', 'Informe os dados obrigatórios para continuar', { duration: 2000 });
       this.formMembroFamilia.markAsDirty();
-      return;
-    }
+    };
 
     this.fillModelWithForm();
+    switch ($event.submitter.id) {
+      case 'btn-adicionar-membro':
+        if (this.formMembroFamilia.invalid) {
+          showSnackError();
+          return;
+        }
+        this.saveMember.emit(this.Model);
+        break;
+      case 'btn-familia-completa':
+        if (!this.formIsValidSubmitFamily()) {
+          showSnackError();
+          return;
+        }
+        this.saveMemberAndSubmitFamily.emit(this.Model.fullName !== '' ? this.model : null);
+    }
 
     this.snackBar.open('Sucesso', '', { duration: 2000 });
 
-    if ($event.submitter.id === 'btn-adicionar-membro') {
-      this.saveMember.emit(this.Model);
-    } else if ($event.submitter.id === 'btn-familia-completa') {
-      this.saveMemberAndSubmitFamily.emit(this.Model.fullName !== '' ? this.model : null);
-    }
-
     this.scrollToForm();
     this.resetForm($event);
-
-    return;
   }
 
-  private formIsValid(): boolean {
+  private formIsValidSubmitFamily(): boolean {
     if (this.Model.familyMemberType === FamilyMemberType.Main && this.formMembroFamilia.invalid) {
       return false;
-    } else if (this.Model.familyMemberType === this.familyMemberType.Dependent && this.formMembroFamilia.touched
+    } else if (this.Model.familyMemberType === this.familyMemberType.Dependent && this.formMembroFamilia.controls.fullName.value !== ''
       && this.formMembroFamilia.invalid) {
       return false;
     } else {
       return true;
     }
-
   }
 
   private resetForm($event: any): void {

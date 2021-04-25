@@ -2,11 +2,30 @@
     <div id="conteudo">
         <app-nav-bar></app-nav-bar>
         <div *ngFor="let familyMember of membros" class="">
-            <app-family-member-resume [model]="familyMember" (familyMemberClick)="editMember($event)" ></app-family-member-resume>
+            <app-family-member-resume [model]="familyMember" (familyMemberClick)="editMember($event)">
+            </app-family-member-resume>
         </div>
-        <div>
-            <app-membro-familia [Model]="activeEditingMember" (saveMember)="saveFamilyMember($event)" (saveMemberAndSubmitFamily)="saveMemberAndSubmitFamily($event)">
+        <div *ngIf="!familyCompleted">
+            <app-membro-familia [Model]="activeEditingMember" (saveMember)="saveFamilyMember($event)"
+                (saveMemberAndSubmitFamily)="saveMemberAndSubmitFamily($event)">
             </app-membro-familia>
         </div>
+        <form #caseForm="ngForm" *ngIf="familyCompleted == true" (ngSubmit)="postFamily($event)">
+            <div class="w-100 m-auto">
+                <h1 class="mat-title-1 text-left">Caso</h1>
+                <mat-form-field class="mt-n2 mb-3 w-100">
+                    <textarea matInput name="txtCase" rows="5" placeholder="descreva a situação atual da família"
+                        [(ngModel)]="socialAssistenceNeedsNotes" required>
+                    </textarea>
+                    <mat-error *ngIf="caseForm.controls['txtCase']?.errors?.required">
+                        Informar o caso da família é <strong>obrigatório</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <button id="btn-familia-completa" type="submit" mat-flat-button color="primary">Confirmar
+                    pré-cadastro</button>
+            </div>
+        </form>
     </div>
 </div>

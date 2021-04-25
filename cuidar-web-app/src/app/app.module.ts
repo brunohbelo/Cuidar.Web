@@ -10,14 +10,14 @@ import { HomeComponent } from './components/home/home.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MembroFamiliaComponent } from './components/cadastro-familia/membro-familia/membro-familia.component';
 import { CadastroFamiliaComponent } from './components/cadastro-familia/cadastro-familia.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { FamilyMemberResumeComponent } from './components/family-member-resume/family-member-resume/family-member-resume.component';
+import { FamilyMemberResumeComponent } from './components/family-member-resume/family-member-resume.component';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -36,6 +36,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    FormsModule,
     HttpClientModule,
     MatButtonModule,
     MatInputModule,

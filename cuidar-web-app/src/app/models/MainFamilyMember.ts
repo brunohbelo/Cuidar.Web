@@ -8,6 +8,8 @@ export class MainFamilyMember extends FamilyMember {
 
     constructor() {
         super();
+        this.familyMemberType = FamilyMemberType.Main;
+
         this.addressPostalCode = '';
         this.addressStreetName = '';
         this.addressStreetNumber = '';
@@ -20,8 +22,8 @@ export class MainFamilyMember extends FamilyMember {
         this.contactPhoneNumber = '';
         this.contactEmail = '';
         this.housingTypeNotes = '';
-        this.economicSituationNotes =  '';
-        this.familyMemberType = FamilyMemberType.Main;
+        this.economicSituationNotes = '';
+        this.socialAssistenceNeedsNotes = '';
     }
 
     public addressPostalCode: string;
@@ -29,13 +31,13 @@ export class MainFamilyMember extends FamilyMember {
     public addressStreetNumber!: string;
     public addressCity: string;
     public addressState: string;
+    public addressStreetComplement: string;
     public civilStatus: FamilyMemberCivilStatus;
     public schooling: FamilyMemberSchooling;
-
-    public addressStreetComplement: string;
     public contactPhoneNumber: string;
     public contactEmail: string;
     public housingType: FamilyMemberHousingType;
     public housingTypeNotes: string;
     public economicSituationNotes: string;
+    public socialAssistenceNeedsNotes: string;
 }
