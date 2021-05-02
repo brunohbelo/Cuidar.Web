@@ -11,7 +11,6 @@ export class DependentFamilyMember extends FamilyMember {
         this.familyMemberType = FamilyMemberType.Dependent;
     }
 
-    public linkTypeToMainMember: FamilyMemberLinkType | undefined;
-
+    public linkTypeToMainMember!: FamilyMemberLinkType;
     public mainFamilyMember: MainFamilyMember;
 }

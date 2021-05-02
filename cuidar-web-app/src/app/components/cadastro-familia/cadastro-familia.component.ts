@@ -9,7 +9,7 @@ import { FamilyMemberSchooling } from 'src/app/models/enums/FamilyMemberSchoolin
 import { FamilyMemberType } from 'src/app/models/enums/FamilyMemberType';
 import { FamilyMember } from 'src/app/models/FamilyMember';
 import { MainFamilyMember } from 'src/app/models/MainFamilyMember';
-import { MainFamilyMemberSerivce } from 'src/app/services/mainFamilyMember.service';
+import { FamilyService } from 'src/app/services/Family.service';
 
 @Component({
   selector: 'app-cadastro-familia',
@@ -27,20 +27,37 @@ export class CadastroFamiliaComponent implements OnInit {
 
   }
 
-  constructor(private mainFamilyMemberService: MainFamilyMemberSerivce, private snackBar: MatSnackBar, private router: Router) {
+  constructor(private mainFamilyMemberService: FamilyService, private snackBar: MatSnackBar, private router: Router) {
     this.activeEditingMember = new MainFamilyMember();
     // this.initMemberTest();
   }
 
   editMember(familyMember: FamilyMember): void {
     this.familyCompleted = false;
+
+    this.saveCurrentEditingFailyMember();
+
     const currentIndex = this.membros.findIndex(x => x === familyMember);
     this.membros.splice(currentIndex, 1);
+
     this.activeEditingMember = Object.assign({}, familyMember);
   }
 
+  saveCurrentEditingFailyMember(): void {
+
+    if (this.activeEditingMember && this.activeEditingMember.fullName !== '') {
+      this.saveFamilyMember(this.activeEditingMember);
+    }
+
+  }
+
   saveFamilyMember(familyMember: FamilyMember): void {
-    this.membros.push(Object.assign({}, familyMember));
+
+    if (familyMember.familyMemberType === FamilyMemberType.Main) {
+      this.membros.unshift(Object.assign({}, familyMember));
+    } else {
+      this.membros.push(Object.assign({}, familyMember));
+    }
 
     if (this.membros.length > 0) {
       this.activeEditingMember = new DependentFamilyMember(familyMember as MainFamilyMember);
@@ -64,17 +81,22 @@ export class CadastroFamiliaComponent implements OnInit {
 
   public postFamily(): void {
 
+    const dependentMembers = this.membros.filter(x => x.familyMemberType === FamilyMemberType.Dependent) as Array<DependentFamilyMember>;
     const mainMember = this.membros.find(x => x.familyMemberType === FamilyMemberType.Main) as MainFamilyMember;
     mainMember.socialAssistenceNeedsNotes = this.socialAssistenceNeedsNotes;
-    this.mainFamilyMemberService.postMainFamilyMember(mainMember).subscribe(
+
+    this.mainFamilyMemberService.postMainFamilyMember(mainMember, dependentMembers).subscribe(
       data => {
+        console.log('familia salva com sucesso');
         console.log(data);
         this.snackBar.open('Família Salva com sucesso', '', { duration: 5000 });
         this.router.navigate(['']);
       },
       error => {
+        console.log('Erro ao salvar família');
         console.log(error);
-        this.snackBar.open('Erro ao salvar família', '', { duration: 5000 });
+        this.snackBar.open(`Erro ao salvar família... \r\n ${error.error.errorList.map(((x: { message: string; }) => x.message)).join()}`,
+          '', { duration: 5000 });
       }
     );
 

@@ -85,7 +85,7 @@ export class MembroFamiliaComponent implements OnInit {
     this.formMembroFamilia.addControl('addressCity', new FormControl(mainModel.addressCity, [Validators.required]));
     this.formMembroFamilia.addControl('addressState', new FormControl(mainModel.addressState, [Validators.required]));
     this.formMembroFamilia.addControl('addressStreetNumber', new FormControl(mainModel.addressStreetNumber, [Validators.required]));
-    this.formMembroFamilia.addControl('addressStreetComplement', new FormControl(mainModel.addressStreetComplement, [Validators.required]));
+    this.formMembroFamilia.addControl('addressStreetComplement', new FormControl(mainModel.addressStreetComplement));
     this.formMembroFamilia.addControl('addressPostalCode', new FormControl(mainModel.addressPostalCode, [Validators.required]));
     this.formMembroFamilia.addControl('housingType', new FormControl(mainModel.housingType, [Validators.required]));
     this.formMembroFamilia.addControl('housingTypeNotes', new FormControl(mainModel.housingType, [
@@ -131,8 +131,6 @@ export class MembroFamiliaComponent implements OnInit {
         }
         this.saveMemberAndSubmitFamily.emit(this.Model.fullName !== '' ? this.model : null);
     }
-
-    this.snackBar.open('Sucesso', '', { duration: 2000 });
 
     this.scrollToForm();
     this.resetForm($event);

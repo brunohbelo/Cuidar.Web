@@ -7,6 +7,15 @@ $firstRem: 0.25rem;
 $secondRem: 0.75rem;
 $tirdhRem: 1rem;
 $forthRem: 3rem;
+$color-purple-light: #99879D;
+
+.color-purple-light{
+    color: $color-purple-light;
+}
+
+.bg-purple-light{
+    background-color: $color-purple-light;
+}
 
 .text-left{
     text-align: left;
@@ -82,6 +91,38 @@ $forthRem: 3rem;
     padding: $forthRem;
 }
 
+
+.pl-1{
+    padding-left: $firstRem;
+}
+
+.pl-2{
+    padding-left: $secondRem;
+}
+
+.pl-3{
+    padding-left: $tirdhRem;
+}
+
+.pl-4{
+    padding-left: $forthRem;
+}
+
+.pr-1{
+    padding-right: $firstRem;
+}
+
+.pr-2{
+    padding-right: $secondRem;
+}
+
+.pr-3{
+    padding-right: $tirdhRem;
+}
+
+.pr-4{
+    padding-right: $forthRem;
+}
 
 .m-auto{
     margin: 0 auto;

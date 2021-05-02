@@ -1,15 +1,18 @@
-<div class="family-member-resume-container w-100 p-1 mb-2">
+<div class="family-member-resume-container w-100 p-1" [ngClass]="{'pl-2': (model.familyMemberType === FamilyMemberType.Dependent)}" >
     <div class="d-flex"  (click)="familyMemberResumeClicked()">
         <div class="w-20 d-flex align-center justify-content-center">
             <mat-icon>account_circle</mat-icon>
         </div>
         <div class="w-80 d-flex">
             <div class="w-80 text-left">
-                <div class="mat-title-2">{{model.fullName}}</div>
-                <div>CPF {{model.documentId}}</div>
+                <h3 class="mat-title-1 mb-0"><b>{{model.fullName}}</b></h3>
+                <div class="color-purple-light">CPF: {{model.documentId}}</div>
+                <div *ngIf="model.familyMemberType === FamilyMemberType.Dependent" class="color-purple-light" >
+                    Parentesco: {{getLinkType()}}
+                </div>
                 <div><b>{{model.familyMemberType}}</b></div>
             </div>
-            <div class="w-20 align-center text-rigth">
+            <div class="w-20 d-flex align-center text-rigth">
                 <mat-icon>arrow_drop_down</mat-icon>
             </div>
         </div>
