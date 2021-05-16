@@ -25,6 +25,11 @@ $color-purple-light: #99879D;
     text-align: right;
 }
 
+.text-center{
+    text-align: center;
+}
+
+
 .d-flex{
     display: flex;
 }
@@ -141,7 +146,7 @@ $color-purple-light: #99879D;
 }
 
 .mt-2{
-    margin-top: $secondRem;
+    margin-top: $secondRem !important;
 }
 
 .mt-3{
@@ -178,7 +183,7 @@ $color-purple-light: #99879D;
 }
 
 .mb-2{
-    margin-bottom: $secondRem;
+    margin-bottom: $secondRem !important;
 }
 
 .mb-3{
