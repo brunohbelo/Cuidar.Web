@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { AppConfig } from '../appConfig';
 import { DependentFamilyMember } from '../models/DependentFamilyMember';
 import { FamilyDTO } from '../models/dtos/FamilyDTO';
-import { FamilySearchResponse } from '../models/dtos/FamilySearchResponse';
+import { FamilySearchDTO } from '../models/dtos/FamilySearchDTO';
 import { MainFamilyMember } from '../models/MainFamilyMember';
 
 @Injectable({
@@ -22,11 +22,11 @@ export class FamilyService {
 
     }
 
-    public getAllFamilies(pageNumber: number): Observable<FamilySearchResponse> {
-        return this.httpClient.get<FamilySearchResponse>(`${AppConfig.API_ENDPOINT}/familymembers/search?page${pageNumber}&size=10`);
+    public getAllFamilies(pageNumber: number): Observable<FamilySearchDTO> {
+        return this.httpClient.get<FamilySearchDTO>(`${AppConfig.API_ENDPOINT}/familymembers/search?page=${pageNumber}&size=10`);
     }
 
-    public getFamilyByName(pageNumber: number): Observable<FamilySearchResponse> {
-        return this.httpClient.get<FamilySearchResponse>(`${AppConfig.API_ENDPOINT}/familymembers/search?page${pageNumber}&size=10`);
+    public getFamilyByName(name: string, pageNumber: number): Observable<FamilySearchDTO> {
+        return this.httpClient.get<FamilySearchDTO>(`${AppConfig.API_ENDPOINT}/familymembers/search?page=${pageNumber}&size=10&fullName=${name}`);
     }
 }

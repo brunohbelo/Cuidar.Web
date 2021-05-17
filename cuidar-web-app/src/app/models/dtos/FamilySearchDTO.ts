@@ -1,6 +1,6 @@
 import { FamilyStatus } from '../enums/FamilyStatus';
 
-export class FamilySearchResponse {
+export class FamilySearchDTO {
     currentPage!: number;
     totalItems!: number;
     totalPages!: number;

@@ -1,26 +1,46 @@
 import { CollectionViewer, DataSource } from '@angular/cdk/collections';
-import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
-import { FamilyMemberFamilySearchResponse, FamilySearchResponse } from 'src/app/models/dtos/FamilySearchResponse';
+import { ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/internal/operators/debounceTime';
+import { distinctUntilChanged } from 'rxjs/operators';
+import { FamilyMemberFamilySearchResponse, FamilySearchDTO } from 'src/app/models/dtos/FamilySearchDTO';
 import { FamilyStatus } from 'src/app/models/enums/FamilyStatus';
 import { FamilyService } from 'src/app/services/Family.service';
 
 @Component({
   selector: 'app-family-search',
   templateUrl: './family-search.component.html',
-  styleUrls: ['./family-search.component.scss']
+  styleUrls: ['./family-search.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FamilySearchComponent implements OnInit {
+export class FamilySearchComponent implements OnInit, OnDestroy {
 
   public dataSource = new FamilyDataSource(this.familyService);
+  public searchingName!: string;
+  public nameSearchChanged: Subject<string> = new Subject<string>();
+  private nameSearchChangeSubscription!: Subscription;
 
-  constructor(private familyService: FamilyService) { }
+  constructor(private familyService: FamilyService, private changeDetectorRefs: ChangeDetectorRef
+  ) {
 
-  ngOnInit(): void {
   }
 
-  getFamilyStatus(status: string): FamilyStatus{
-    const statusEnum =  FamilyStatus[status as keyof typeof FamilyStatus];
+  ngOnInit(): void {
+    this.nameSearchChangeSubscription = this.nameSearchChanged.pipe(debounceTime(1000), distinctUntilChanged())
+      .subscribe(newName => {
+        this.searchingName = newName;
+        this.dataSource.searchByName(this.searchingName);
+      });
+  }
+
+
+  ngOnDestroy(): void {
+    this.nameSearchChangeSubscription.unsubscribe();
+  }
+
+  getFamilyStatus(status: string): FamilyStatus {
+    const statusEnum = FamilyStatus[status as keyof typeof FamilyStatus];
     return statusEnum;
   }
 
@@ -32,6 +52,7 @@ class FamilyDataSource extends DataSource<FamilyMemberFamilySearchResponse | und
   private pageSize = 10;
   private cachedData = Array.from<FamilyMemberFamilySearchResponse>({ length: this.length });
   private fetchedPages = new Set<number>();
+  private searchingName = '';
   private readonly dataStream = new BehaviorSubject<(FamilyMemberFamilySearchResponse | undefined)[]>(this.cachedData);
   private readonly subscription = new Subscription();
 
@@ -56,6 +77,13 @@ class FamilyDataSource extends DataSource<FamilyMemberFamilySearchResponse | und
     this.subscription.unsubscribe();
   }
 
+  searchByName(name: string): void {
+    this.length = 1;
+    this.fetchedPages = new Set<number>();
+    this.searchingName = name;
+    this._fetchPage(0);
+  }
+
   private _getPageForIndex(index: number): number {
     return Math.floor(index / this.pageSize);
   }
@@ -66,13 +94,23 @@ class FamilyDataSource extends DataSource<FamilyMemberFamilySearchResponse | und
     }
     this.fetchedPages.add(page);
 
-    this.familyService.getAllFamilies(page).subscribe({
-      next: response => {
-        this.length = response.totalItems;
-        this.cachedData = response.families;
-        this.dataStream.next(this.cachedData);
-      }
-    });
+    if (this.searchingName.length <= 1) {
+      this.familyService.getAllFamilies(page).subscribe({
+        next: response => {
+          this.length = response.totalItems;
+          this.cachedData = response.families;
+          this.dataStream.next(this.cachedData);
+        }
+      });
+    } else {
+      this.familyService.getFamilyByName(this.searchingName, page).subscribe({
+        next: response => {
+          this.length = response.totalItems;
+          this.cachedData = response.families;
+          this.dataStream.next(this.cachedData);
+        }
+      });
+    }
 
   }
 
