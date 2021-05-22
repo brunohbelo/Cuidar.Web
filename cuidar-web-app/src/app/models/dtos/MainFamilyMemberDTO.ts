@@ -2,6 +2,7 @@ import { getEnumKeyByEnumValue } from 'src/app/helpers/enumHelper';
 import { FamilyMemberCivilStatus } from '../enums/FamilyMemberCivilStatus';
 import { FamilyMemberHousingType } from '../enums/FamilyMemberHousingType';
 import { FamilyMemberSchooling } from '../enums/FamilyMemberSchooling';
+import { FamilyStatus } from '../enums/FamilyStatus';
 import { MainFamilyMember } from '../MainFamilyMember';
 import { FamilyMemberDTO } from './FamilyMemberDTO';
 
@@ -40,4 +41,6 @@ export class MainFamilyMemberDTO extends FamilyMemberDTO {
     public housingTypeNotes: string;
     public economicSituationNotes: string;
     public socialAssistenceNeedsNotes: string;
+    public systemRegistrationDate: Date | undefined;
+    public generalStatus!: FamilyStatus;
 }

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CadastroFamiliaComponent } from './components/cadastro-familia/cadastro-familia.component';
+import { FamilyApprovalReviewComponent } from './components/family-approval-review/family-approval-review.component';
 import { FamilySearchComponent } from './components/family-search/family-search.component';
 import { HomeComponent } from './components/home/home.component';
 
@@ -8,7 +9,8 @@ import { HomeComponent } from './components/home/home.component';
 const routes: Routes = [
   {path: '', component: HomeComponent },
   {path: 'cadastro-familia', component: CadastroFamiliaComponent },
-  {path: 'family-search', component: FamilySearchComponent }
+  {path: 'family-search', component: FamilySearchComponent },
+  {path: 'family-sindicance/:id', component: FamilyApprovalReviewComponent }
 ];
 
 @NgModule({

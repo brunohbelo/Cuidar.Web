@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FamilyStatusHelper } from 'src/app/helpers/familyStatusHelper';
 import { FamilyStatus } from 'src/app/models/enums/FamilyStatus';
 
 @Component({
@@ -15,29 +16,10 @@ export class FamilySearchResumeComponent implements OnInit {
   @Input()
   status!: FamilyStatus;
 
+  familyStatusHelper = FamilyStatusHelper;
+
   constructor() { }
 
   ngOnInit(): void {
   }
-
-  getStatusCollor(status: FamilyStatus): any {
-    const color = { 'background-color': '' };
-    switch (status) {
-      case FamilyStatus.Active:
-        color['background-color'] = 'rgba(98,217,79,0.5)';
-        break;
-      case FamilyStatus.PendingApproval:
-        color['background-color'] = 'rgba(237,167,103,0.5)';
-        break;
-      case FamilyStatus.Promoted:
-        color['background-color'] = 'rgba(147,120,255,0.5)';
-        break;
-      case FamilyStatus.Suspended:
-        color['background-color'] = 'rgba(228,96,96,0.5)';
-        break;
-    }
-
-    return color;
-  }
-
 }

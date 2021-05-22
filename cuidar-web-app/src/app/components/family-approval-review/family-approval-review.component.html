@@ -1,0 +1,40 @@
+<div class="family-approval-review-container m-auto">
+    <div id="conteudo" *ngIf="family && family.mainFamilyMember">
+        <app-nav-bar></app-nav-bar>
+        <div class="pl-2 pr-2 d-flex justify-content-between">
+            <h1 class="mat-display text-center mb-2"><strong>Visão Geral</strong></h1>
+            <div class="status color-purple-light text-right pl-2 pr-2"
+                [ngStyle]="familyStatusHelper.getStatusCollor(familyStatusHelper.getFamilyStatus(family.mainFamilyMember.generalStatus))">
+                {{familyStatusHelper.getFamilyStatus(family.mainFamilyMember.generalStatus)}}
+            </div>
+        </div>
+        <div class="membros">
+            <h3 class="mb-2"><strong>Membros</strong></h3>
+            <app-family-member-resume [model]="getMainFamilyMember()"></app-family-member-resume>
+            <app-family-member-resume *ngFor="let member of family.dependentMembers"
+                [model]="getDependentMember(member)">
+            </app-family-member-resume>
+        </div>
+        <div class="detalhes">
+            <h3 class="mb-2"><strong>Detalhes</strong></h3>
+            <h4 class="mb-2"><strong>Pré-cadastro feito em {{family.mainFamilyMember.systemRegistrationDate | date:'dd/MM/yyyy' }}</strong></h4>
+            <div class="w-100 pl-2 text-left"><strong>Caso</strong></div>
+            <p class="pl-1 mt-2 text-left">
+                {{family.mainFamilyMember.socialAssistenceNeedsNotes}}
+            </p>
+        </div>
+        <div class="observacoes border-top">
+            <h3 class="mb-2 mt-2"><strong>Observações</strong></h3>
+            <mat-form-field class="mb-3 w-100">
+                <textarea matInput name="txtCase" rows="5" placeholder="mensagem" [(ngModel)]="syndicationNotes"
+                 [disabled]="!showSindicanceButtons()"
+                 required>
+                </textarea>
+            </mat-form-field>
+        </div>
+        <div class="w-100 mt-n2 mb-3 d-flex justify-content-between m-auto" *ngIf="showSindicanceButtons()">
+            <button mat-flat-button color="primary" class="pl-2 pt-1 pb-1" (click)="reproveSindicance()">Reprovar cadastro</button>
+            <button mat-flat-button color="primary" class="pr-2 pt-1 pb-1" (click)="approveSindicance()">Aprovar cadastro</button>
+        </div>
+    </div>
+</div>

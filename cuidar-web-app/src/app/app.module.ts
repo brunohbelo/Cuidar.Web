@@ -24,7 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FamilySearchComponent } from './components/family-search/family-search.component';
 import { WebApiInterceptor } from './interceptors/webApiInterceptor';
 import { FamilySearchResumeComponent } from './components/family-search/family-search-resume/family-search-resume.component';
-
+import { FamilyApprovalReviewComponent } from './components/family-approval-review/family-approval-review.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +35,8 @@ import { FamilySearchResumeComponent } from './components/family-search/family-s
     MembroFamiliaComponent,
     FamilyMemberResumeComponent,
     FamilySearchComponent,
-    FamilySearchResumeComponent
+    FamilySearchResumeComponent,
+    FamilyApprovalReviewComponent
   ],
   imports: [
     BrowserModule,

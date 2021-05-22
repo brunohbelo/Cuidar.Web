@@ -5,17 +5,20 @@
         <div class="w-100">
             <mat-form-field class="w-80 pr-3 pl-3">
                 <mat-label>Busque pelo nome</mat-label>
-                <input type="text" matInput [ngModel]='searchingName' (ngModelChange)='nameSearchChanged.next($event)'  placeholder="">
+                <input type="text" matInput [ngModel]='searchingName' (ngModelChange)='nameSearchChanged.next($event)'
+                    placeholder="">
             </mat-form-field>
         </div>
-        <cdk-virtual-scroll-viewport itemSize="10" style="height: 800px;">
+        <cdk-virtual-scroll-viewport #viewPort itemSize="10" [ngStyle]="{'height': getViewReportHeight()}">
             <div *cdkVirtualFor="let family of dataSource">
                 <div *ngIf="family != null">
-                    <app-family-search-resume  [fullName]="family.fullName"
-                        [documentId]="family.documentId" [status]="getFamilyStatus(family.generalStatus)">
+                    <app-family-search-resume [fullName]="family.fullName" [documentId]="family.documentId"
+                        [status]="familyStatusHelper.getFamilyStatus(family.generalStatus)">
                     </app-family-search-resume>
-                    <button *ngIf="family.generalStatus == 'Active' || family.generalStatus == 'PendingApproval'"
-                        class="mt-2 mb-2" id="btn-familia-completa" type="submit" mat-flat-button color="primary">
+                    <button mat-raised-button
+                        *ngIf="family.generalStatus == 'Active' || family.generalStatus == 'PendingApproval'"
+                        [routerLink]="['/family-sindicance', family.id]" class="mt-2 mb-2 pt-1 pb-1" id="btn-familia-completa"
+                        type="submit" mat-flat-button color="primary">
                         Ver detalhes
                     </button>
                     <hr />

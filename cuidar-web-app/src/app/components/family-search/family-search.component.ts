@@ -1,11 +1,12 @@
 import { CollectionViewer, DataSource } from '@angular/cdk/collections';
-import { ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { ChangeDetectionStrategy, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 import { distinctUntilChanged } from 'rxjs/operators';
+import { FamilyStatusHelper } from 'src/app/helpers/familyStatusHelper';
 import { FamilyMemberFamilySearchResponse, FamilySearchDTO } from 'src/app/models/dtos/FamilySearchDTO';
-import { FamilyStatus } from 'src/app/models/enums/FamilyStatus';
 import { FamilyService } from 'src/app/services/Family.service';
 
 @Component({
@@ -18,12 +19,18 @@ export class FamilySearchComponent implements OnInit, OnDestroy {
 
   public dataSource = new FamilyDataSource(this.familyService);
   public searchingName!: string;
+  public innerWidth!: number;
   public nameSearchChanged: Subject<string> = new Subject<string>();
   private nameSearchChangeSubscription!: Subscription;
 
+  familyStatusHelper = FamilyStatusHelper;
+
+  @ViewChild('viewPort')
+  virtualScroll!: CdkVirtualScrollViewport;
+
   constructor(private familyService: FamilyService, private changeDetectorRefs: ChangeDetectorRef
   ) {
-
+    this.innerWidth = window.innerWidth;
   }
 
   ngOnInit(): void {
@@ -34,22 +41,26 @@ export class FamilySearchComponent implements OnInit, OnDestroy {
       });
   }
 
-
   ngOnDestroy(): void {
     this.nameSearchChangeSubscription.unsubscribe();
   }
 
-  getFamilyStatus(status: string): FamilyStatus {
-    const statusEnum = FamilyStatus[status as keyof typeof FamilyStatus];
-    return statusEnum;
-  }
+  getViewReportHeight(): string {
+    let height = '';
+    if (!this.virtualScroll) {
+      height = window.innerHeight.toString();
+    }else {
+      height = (window.innerHeight - (this.virtualScroll.elementRef.nativeElement.offsetTop ?? 0) - 15 ).toString();
+    }
 
+    return height + 'px';
+  }
 
 }
 
 class FamilyDataSource extends DataSource<FamilyMemberFamilySearchResponse | undefined> {
   private length = 1;
-  private pageSize = 10;
+  private pageSize = 2;
   private cachedData = Array.from<FamilyMemberFamilySearchResponse>({ length: this.length });
   private fetchedPages = new Set<number>();
   private searchingName = '';
@@ -81,6 +92,7 @@ class FamilyDataSource extends DataSource<FamilyMemberFamilySearchResponse | und
     this.length = 1;
     this.fetchedPages = new Set<number>();
     this.searchingName = name;
+    this.cachedData.splice(0);
     this._fetchPage(0);
   }
 
@@ -98,7 +110,8 @@ class FamilyDataSource extends DataSource<FamilyMemberFamilySearchResponse | und
       this.familyService.getAllFamilies(page).subscribe({
         next: response => {
           this.length = response.totalItems;
-          this.cachedData = response.families;
+          this.cachedData.push(...response.families);
+          this.cachedData.sort(this.sortFamilyMemberByname);
           this.dataStream.next(this.cachedData);
         }
       });
@@ -106,10 +119,22 @@ class FamilyDataSource extends DataSource<FamilyMemberFamilySearchResponse | und
       this.familyService.getFamilyByName(this.searchingName, page).subscribe({
         next: response => {
           this.length = response.totalItems;
-          this.cachedData = response.families;
+          this.cachedData.push(...response.families);
+          this.cachedData.sort(this.sortFamilyMemberByname);
           this.dataStream.next(this.cachedData);
         }
       });
+    }
+
+  }
+
+  private sortFamilyMemberByname(member1: FamilyMemberFamilySearchResponse, member2: FamilyMemberFamilySearchResponse): number {
+    if (member1.fullName > member2.fullName) {
+      return 1;
+    } else if (member1.fullName < member2.fullName) {
+      return -1;
+    } else {
+      return 0;
     }
 
   }

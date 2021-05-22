@@ -1,3 +1,4 @@
+import { FamilyMemberDTO } from './dtos/FamilyMemberDTO';
 import { BaseObject } from './enums/BaseObject';
 import { FamilyMemberGender } from './enums/FamilyMemberGender';
 import { FamilyMemberType } from './enums/FamilyMemberType';

@@ -3,11 +3,35 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: "Red Hat Display", Roboto, "Helvetica Neue", sans-serif; }
 
+$borderSolidGray: solid 1.5px rgb(155, 134, 134);
+$inputBorderRadius: 10px;
 $firstRem: 0.25rem;
 $secondRem: 0.75rem;
 $tirdhRem: 1rem;
 $forthRem: 3rem;
 $color-purple-light: #99879D;
+
+.mat-form-field-subscript-wrapper{
+    padding-left: 5px;
+}
+
+.mat-form-field.ng-invalid{
+    margin-bottom: 7px !important;
+}
+
+.mat-form-field-flex {
+    border-top: $borderSolidGray;
+    border-left: $borderSolidGray;
+    border-right: $borderSolidGray;
+    border-radius: $inputBorderRadius;
+    padding: 5px;
+}
+
+.mat-form-field-underline{
+    width: 95% !important;
+    margin-left: 2.5%;
+}
+
 
 .color-purple-light{
     color: $color-purple-light;
@@ -96,37 +120,68 @@ $color-purple-light: #99879D;
     padding: $forthRem;
 }
 
+.pt-1{
+    padding-top: $firstRem !important;
+}
+
+.pt-2{
+    padding-top: $secondRem !important;
+}
+
+.pt-3{
+    padding-top: $tirdhRem !important;
+}
+
+.pt-4{
+    padding-top: $forthRem !important;
+}
+
+.pb-1{
+    padding-bottom: $firstRem !important;
+}
+
+.pb-2{
+    padding-bottom: $secondRem !important;
+}
+
+.pb-3{
+    padding-bottom: $tirdhRem !important;
+}
+
+.pb-4{
+    padding-bottom: $forthRem !important;
+}
 
 .pl-1{
-    padding-left: $firstRem;
+    padding-left: $firstRem !important;
 }
 
 .pl-2{
-    padding-left: $secondRem;
+    padding-left: $secondRem !important;
 }
 
 .pl-3{
-    padding-left: $tirdhRem;
+    padding-left: $tirdhRem !important;
 }
 
 .pl-4{
-    padding-left: $forthRem;
+    padding-left: $forthRem !important;
 }
 
 .pr-1{
-    padding-right: $firstRem;
+    padding-right: $firstRem !important;
 }
 
 .pr-2{
-    padding-right: $secondRem;
+    padding-right: $secondRem !important;
 }
 
 .pr-3{
-    padding-right: $tirdhRem;
+    padding-right: $tirdhRem !important;
 }
 
 .pr-4{
-    padding-right: $forthRem;
+    padding-right: $forthRem !important;
 }
 
 .m-auto{
@@ -200,4 +255,8 @@ $color-purple-light: #99879D;
 
 .rotate-180{
     transform: rotate(180deg);
+}
+
+.border-top{
+    border-top: solid 0.5px #99879D;
 }

@@ -19,7 +19,10 @@ export class FamilyService {
 
         const familyDTO = new FamilyDTO(mainFamilyMember, dependentMembers);
         return this.httpClient.post<MainFamilyMember>(`${AppConfig.API_ENDPOINT}/familymembers`, familyDTO);
+    }
 
+    public getFamily(mainMemberId: string): Observable<FamilyDTO> {
+        return this.httpClient.get<FamilyDTO>(`${AppConfig.API_ENDPOINT}/familymembers/${mainMemberId}`);
     }
 
     public getAllFamilies(pageNumber: number): Observable<FamilySearchDTO> {
@@ -28,5 +31,13 @@ export class FamilyService {
 
     public getFamilyByName(name: string, pageNumber: number): Observable<FamilySearchDTO> {
         return this.httpClient.get<FamilySearchDTO>(`${AppConfig.API_ENDPOINT}/familymembers/search?page=${pageNumber}&size=10&fullName=${name}`);
+    }
+
+    public approveFamilySindicance(mainMemberId: string, syndicationNotes: string): Observable<void> {
+        return this.httpClient.post<void>(`${AppConfig.API_ENDPOINT}/syndication/approve/${mainMemberId}`, { syndicationNotes });
+    }
+
+    public reproveFamilySindicance(mainMemberId: string, syndicationNotes: string): Observable<void> {
+        return this.httpClient.post<void>(`${AppConfig.API_ENDPOINT}/syndication/reprove/${mainMemberId}`, { syndicationNotes });
     }
 }

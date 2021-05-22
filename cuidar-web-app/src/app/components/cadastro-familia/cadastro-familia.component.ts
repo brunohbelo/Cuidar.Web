@@ -87,13 +87,10 @@ export class CadastroFamiliaComponent implements OnInit {
 
     this.mainFamilyMemberService.postMainFamilyMember(mainMember, dependentMembers).subscribe(
       data => {
-        console.log('familia salva com sucesso');
-        console.log(data);
         this.snackBar.open('Família Salva com sucesso', '', { duration: 5000 });
         this.router.navigate(['']);
       },
       error => {
-        console.log('Erro ao salvar família');
         console.log(error);
         this.snackBar.open(`Erro ao salvar família... \r\n ${error.error.errorList.map(((x: { message: string; }) => x.message)).join()}`,
           '', { duration: 5000 });
