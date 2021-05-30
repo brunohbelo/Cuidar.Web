@@ -13,7 +13,7 @@
         <form #caseForm="ngForm" *ngIf="familyCompleted == true" (ngSubmit)="postFamily()">
             <div class="w-100 m-auto">
                 <h1 class="mat-title-1 text-left">Caso</h1>
-                <mat-form-field class="mt-n2 mb-3 w-100">
+                <mat-form-field appearance="outline" class="mt-n2 mb-3 w-100">
                     <textarea matInput name="txtCase" rows="5" placeholder="descreva a situação atual da família"
                         [(ngModel)]="socialAssistenceNeedsNotes" required>
                     </textarea>

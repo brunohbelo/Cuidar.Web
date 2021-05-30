@@ -3,14 +3,14 @@
         <h1 class="mat-title-1"><b>Informe os dados do membro {{familyMemberTypeDescription}}</b></h1>
 
         <section id="membro-principal" *ngIf="Model.familyMemberType === familyMemberType.Main">
-            <mat-form-field id='nome-completo' class="w-100">
+            <mat-form-field appearance="outline" id='nome-completo' class="w-100">
                 <mat-label>Nome Completo</mat-label>
                 <input type="text" matInput formControlName="fullName" placeholder="Ex. João da Silva">
                 <mat-error *ngIf="formMembroFamilia.controls['fullName'].hasError('required')">
                     Nome completo é <strong>obrigatório</strong>
                 </mat-error>
             </mat-form-field>
-            <mat-form-field id="email" class="w-100">
+            <mat-form-field appearance="outline" id="email" class="w-100">
                 <mat-label>Email</mat-label>
                 <input type="email" matInput formControlName="contactEmail" placeholder="Ex. seuemail@dominio.com">
                 <mat-error *ngIf="formMembroFamilia.controls['contactEmail'].hasError('email')">
@@ -18,14 +18,14 @@
                 </mat-error>
             </mat-form-field>
             <div id="cpf-schooling" class="d-flex justify-content-around">
-                <mat-form-field id="cpf" class="w-50">
+                <mat-form-field appearance="outline" id="cpf" class="w-50">
                     <mat-label>CPF</mat-label>
                     <input type="text" matInput formControlName="documentId" placeholder="Ex. 000.000.000-00">
                     <mat-error *ngIf="formMembroFamilia.controls['documentId'].hasError('required')">
                         O cpf é <strong>obrigatório</strong>
                     </mat-error>
                 </mat-form-field>
-                <mat-form-field id="schooling" class="w-50">
+                <mat-form-field appearance="outline" id="schooling" class="w-50">
                     <mat-label>Escolaridade</mat-label>
                     <mat-select formControlName="schooling">
                         <mat-option>--</mat-option>
@@ -39,14 +39,14 @@
                 </mat-form-field>
             </div>
             <div id="renda-occupation" class="d-flex justify-content-around">
-                <mat-form-field id="rendaTotalFamilia" class="w-50">
+                <mat-form-field appearance="outline" id="rendaTotalFamilia" class="w-50">
                     <mat-label>Renda total da família</mat-label>
                     <input type="text" matInput formControlName="economicSituationNotes" placeholder="Ex. 500,00">
                     <mat-error *ngIf="formMembroFamilia.controls['economicSituationNotes'].hasError('required')">
                         A renda da família é <strong>obrigatória</strong>
                     </mat-error>
                 </mat-form-field>
-                <mat-form-field class="w-50">
+                <mat-form-field appearance="outline" class="w-50">
                     <mat-label>Ocupação</mat-label>
                     <input type="text" matInput formControlName="occupation" placeholder="Ex. Marceneiro">
                     <mat-error *ngIf="formMembroFamilia.controls['occupation'].hasError('required')">
@@ -55,14 +55,14 @@
                 </mat-form-field>
             </div>
             <div id="cep-numero-edereco" class="d-flex justify-content-around">
-                <mat-form-field id="addressPostalCode" class="w-50">
+                <mat-form-field appearance="outline" id="addressPostalCode" class="w-50">
                     <mat-label>CEP</mat-label>
                     <input type="number" matInput formControlName="addressPostalCode" placeholder="Ex. 00.000-000">
                     <mat-error *ngIf="formMembroFamilia.controls['addressPostalCode'].hasError('required')">
                         O CEP é <strong>obrigatório</strong>
                     </mat-error>
                 </mat-form-field>
-                <mat-form-field class="w-50">
+                <mat-form-field appearance="outline" class="w-50">
                     <mat-label>Número Endereço</mat-label>
                     <input type="text" matInput formControlName="addressStreetNumber" placeholder="Ex. 67">
                     <mat-error *ngIf="formMembroFamilia.controls['addressStreetNumber'].hasError('required')">
@@ -70,7 +70,7 @@
                     </mat-error>
                 </mat-form-field>
             </div>
-            <mat-form-field id="addressStreetName" class="w-100">
+            <mat-form-field appearance="outline" id="addressStreetName" class="w-100">
                 <mat-label>Endereço</mat-label>
                 <input type="text" matInput formControlName="addressStreetName" placeholder="Ex. R. Adamantina">
                 <mat-error *ngIf="formMembroFamilia.controls['addressStreetName'].hasError('required')">
@@ -78,7 +78,7 @@
                 </mat-error>
             </mat-form-field>
             <div id="Complemento-HousingType">
-                <mat-form-field id="complemento-endereco" class="w-50">
+                <mat-form-field appearance="outline" id="complemento-endereco" class="w-50">
                     <mat-label>Complemento endereço</mat-label>
                     <input type="text" matInput formControlName="addressStreetComplement"
                         placeholder="Ex. R. Adamantina">
@@ -86,7 +86,7 @@
                         O complemento do endereço é <strong>obrigatório</strong>
                     </mat-error>
                 </mat-form-field>
-                <mat-form-field class="w-50">
+                <mat-form-field appearance="outline" class="w-50">
                     <mat-label>Tipo de Moradia</mat-label>
                     <mat-select formControlName="housingType">
                         <mat-option>--</mat-option>
@@ -99,7 +99,7 @@
                     </mat-error>
                 </mat-form-field>
             </div>
-            <mat-form-field id="housingTypeNotes" *ngIf="formMembroFamilia.controls['housingType'].value === housingOptions.Other" class="w-100">
+            <mat-form-field appearance="outline" id="housingTypeNotes" *ngIf="formMembroFamilia.controls['housingType'].value === housingOptions.Other" class="w-100">
                 <mat-label>Descrição da moradia</mat-label>
                 <textarea matInput formControlName="housingTypeNotes" cdkTextareaAutosize
                     #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5">
@@ -109,14 +109,14 @@
                 </mat-error>
             </mat-form-field>
             <div id="Cidade-UF" class="d-flex justify-content-around">
-                <mat-form-field id="addressCity" class="w-50">
+                <mat-form-field appearance="outline" id="addressCity" class="w-50">
                     <mat-label>Cidade</mat-label>
                     <input type="text" matInput formControlName="addressCity" placeholder="Ex. São Paulo">
                     <mat-error *ngIf="formMembroFamilia.controls['addressCity'].hasError('required')">
                         O CEP é <strong>obrigatório</strong>
                     </mat-error>
                 </mat-form-field>
-                <mat-form-field class="w-50">
+                <mat-form-field appearance="outline" class="w-50">
                     <mat-label>UF</mat-label>
                     <mat-select formControlName="addressState">
                         <mat-option>--</mat-option>
@@ -130,7 +130,7 @@
                 </mat-form-field>
             </div>
             <div id='estado-civil-genero' class="d-flex">
-                <mat-form-field id="estado-civil" class="w-50">
+                <mat-form-field appearance="outline" id="estado-civil" class="w-50">
                     <mat-label>Estado Civil</mat-label>
                     <mat-select formControlName="civilStatus">
                         <mat-option>--</mat-option>
@@ -142,7 +142,7 @@
                         Por favor, selecione um estado civil
                     </mat-error>
                 </mat-form-field>
-                <mat-form-field id="gender" class="w-50">
+                <mat-form-field appearance="outline" id="gender" class="w-50">
                     <mat-label>Gênero</mat-label>
                     <mat-select matNativeControl formControlName="gender">
                         <mat-option>--</mat-option>
@@ -156,11 +156,11 @@
                 </mat-form-field>
             </div>
             <div id="data-nascimento-telefone-celular" class="d-flex">
-                <mat-form-field id="data-nascimento" class="w-50">
+                <mat-form-field appearance="outline" id="data-nascimento" class="w-50">
                     <mat-label>Data de nascimento</mat-label>
                     <input type="date" matInput formControlName="birthDate" placeholder="Ex. 29/12/2000">
                 </mat-form-field>
-                <mat-form-field id="telefone-celular" class="w-50">
+                <mat-form-field appearance="outline" id="telefone-celular" class="w-50">
                     <mat-label>Telefone/Celular</mat-label>
                     <input type="tel" matInput formControlName="contactPhoneNumber" placeholder="Ex. 99999-9999">
                 </mat-form-field>
@@ -168,7 +168,7 @@
         </section>
 
         <section id="membro-dependente" *ngIf="Model.familyMemberType === familyMemberType.Dependent">
-            <mat-form-field id="linkTypeToMainMember" class="w-100">
+            <mat-form-field appearance="outline" id="linkTypeToMainMember" class="w-100">
                 <mat-label>Parentesco</mat-label>
                 <mat-select matNativeControl formControlName="linkTypeToMainMember">
                     <mat-option>--</mat-option>
@@ -180,7 +180,7 @@
                     Por favor, selecione um tipo de parentesco
                 </mat-error>
             </mat-form-field>
-            <mat-form-field id='nome-completo' class="w-100">
+            <mat-form-field appearance="outline" id='nome-completo' class="w-100">
                 <mat-label>Nome Completo</mat-label>
                 <input type="text" matInput formControlName="fullName" placeholder="Ex. João da Silva">
                 <mat-error *ngIf="formMembroFamilia.controls['fullName'].hasError('required')">
@@ -188,11 +188,11 @@
                 </mat-error>
             </mat-form-field>
             <div id="data-nascimento" class="d-flex">
-                <mat-form-field id="data-nascimento" class="w-50">
+                <mat-form-field appearance="outline" id="data-nascimento" class="w-50">
                     <mat-label>Data de nascimento</mat-label>
                     <input type="date" matInput formControlName="birthDate" placeholder="Ex. 29/12/2000">
                 </mat-form-field>
-                <mat-form-field id="gender" class="w-50">
+                <mat-form-field appearance="outline" id="gender" class="w-50">
                     <mat-label>Gênero</mat-label>
                     <mat-select matNativeControl formControlName="gender">
                         <mat-option>--</mat-option>
@@ -206,14 +206,14 @@
                 </mat-form-field>
             </div>
             <div class="w-100">
-                <mat-form-field class="w-50">
+                <mat-form-field appearance="outline" class="w-50">
                     <mat-label>Ocupação</mat-label>
                     <input type="text" matInput formControlName="occupation" placeholder="Ex. Marceneiro">
                     <mat-error *ngIf="formMembroFamilia.controls['occupation'].hasError('required')">
                         A ocupação é <strong>obrigatória</strong>
                     </mat-error>
                 </mat-form-field>
-                <mat-form-field id="cpf" class="w-50">
+                <mat-form-field appearance="outline" id="cpf" class="w-50">
                     <mat-label>CPF</mat-label>
                     <input type="text" matInput formControlName="documentId" placeholder="Ex. 000.000.000-00">
                     <mat-error *ngIf="formMembroFamilia.controls['documentId'].hasError('required')">

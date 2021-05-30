@@ -3,7 +3,7 @@
         <app-nav-bar></app-nav-bar>
         <h1 class="mat-display mb-2"><strong>Busca de assistidos</strong></h1>
         <div class="w-100">
-            <mat-form-field class="w-80 pr-3 pl-3">
+            <mat-form-field appearance="outline" class="w-80 pr-3 pl-3">
                 <mat-label>Busque pelo nome</mat-label>
                 <input type="text" matInput [ngModel]='searchingName' (ngModelChange)='nameSearchChanged.next($event)'
                     placeholder="">
