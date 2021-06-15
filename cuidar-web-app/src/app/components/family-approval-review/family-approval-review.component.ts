@@ -8,6 +8,7 @@ import { DependentFamilyMemberDTO } from 'src/app/models/dtos/DepententFamilyMem
 import { FamilyDTO } from 'src/app/models/dtos/FamilyDTO';
 import { FamilyStatus } from 'src/app/models/enums/FamilyStatus';
 import { MainFamilyMember } from 'src/app/models/MainFamilyMember';
+import { DataShareService } from 'src/app/services/DataShare.service';
 import { FamilyService } from 'src/app/services/Family.service';
 
 
@@ -24,7 +25,7 @@ export class FamilyApprovalReviewComponent implements OnInit {
   private mainFamilyMemberId!: string;
 
   constructor(private route: ActivatedRoute, private familyService: FamilyService,
-              private snackBar: MatSnackBar, private router: Router) {
+              private snackBar: MatSnackBar, private router: Router, private dataShare: DataShareService) {
     this.syndicationNotes = '';
   }
 
@@ -50,8 +51,9 @@ export class FamilyApprovalReviewComponent implements OnInit {
   approveSindicance(): void {
     this.familyService.approveFamilySindicance(this.mainFamilyMemberId, this.syndicationNotes).subscribe({
       next: () => {
+        this.dataShare.family = this.family;
         this.snackBar.open('Família aprovada!', '', { duration: 5000 });
-        this.router.navigate(['/family-search']);
+        this.router.navigate(['/family-action-plan', {id: this.mainFamilyMemberId}]);
       }
     });
   }

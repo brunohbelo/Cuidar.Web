@@ -2,6 +2,7 @@ import { CollectionViewer, DataSource } from '@angular/cdk/collections';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { ChangeDetectionStrategy, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 import { distinctUntilChanged } from 'rxjs/operators';
@@ -28,8 +29,7 @@ export class FamilySearchComponent implements OnInit, OnDestroy {
   @ViewChild('viewPort')
   virtualScroll!: CdkVirtualScrollViewport;
 
-  constructor(private familyService: FamilyService, private changeDetectorRefs: ChangeDetectorRef
-  ) {
+  constructor(private familyService: FamilyService, private changeDetectorRefs: ChangeDetectorRef, private router: Router) {
     this.innerWidth = window.innerWidth;
   }
 
@@ -45,12 +45,20 @@ export class FamilySearchComponent implements OnInit, OnDestroy {
     this.nameSearchChangeSubscription.unsubscribe();
   }
 
+  detailsClick(syndicanceCompleted: boolean, familyId: string): void {
+    if (syndicanceCompleted) {
+      this.router.navigate(['/family-action-plan', familyId]);
+    } else {
+      this.router.navigate(['/family-sindicance', familyId]);
+    }
+  }
+
   getViewReportHeight(): string {
     let height = '';
     if (!this.virtualScroll) {
       height = window.innerHeight.toString();
-    }else {
-      height = (window.innerHeight - (this.virtualScroll.elementRef.nativeElement.offsetTop ?? 0) - 15 ).toString();
+    } else {
+      height = (window.innerHeight - (this.virtualScroll.elementRef.nativeElement.offsetTop ?? 0) - 15).toString();
     }
 
     return height + 'px';

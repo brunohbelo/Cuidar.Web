@@ -10,4 +10,8 @@ export class NavBarComponent {
 
     constructor(private location: Location) {
     }
+
+    returnClick(): void {
+        this.location.back();
+    }
 }

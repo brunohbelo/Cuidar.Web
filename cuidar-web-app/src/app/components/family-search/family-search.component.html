@@ -16,9 +16,8 @@
                         [status]="familyStatusHelper.getFamilyStatus(family.generalStatus)">
                     </app-family-search-resume>
                     <button mat-raised-button
-                        *ngIf="family.generalStatus == 'Active' || family.generalStatus == 'PendingApproval'"
-                        [routerLink]="['/family-sindicance', family.id]" class="mt-2 mb-2 pt-1 pb-1" id="btn-familia-completa"
-                        type="submit" mat-flat-button color="primary">
+                        *ngIf="family.generalStatus == 'Active' || family.generalStatus == 'PendingApproval'" class="mt-2 mb-2 pt-1 pb-1" id="btn-familia-completa"
+                        (click)="detailsClick(family.generalStatus == 'Active', family.id)" type="submit" mat-flat-button color="primary">
                         Ver detalhes
                     </button>
                     <hr />

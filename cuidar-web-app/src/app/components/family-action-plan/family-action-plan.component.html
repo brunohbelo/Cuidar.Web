@@ -1,0 +1,31 @@
+<div class="family-action-plan-container m-auto">
+    <div id="conteudo">
+        <app-nav-bar></app-nav-bar>
+        <h1 class="mat-display mb-2"><strong>Plano de ação</strong></h1>
+        <div class="text-left color-purple-light pl-1">
+            <div>Ativo desde:</div>
+            <div>Válido até:</div>
+        </div>
+        <div *ngIf="mainFamilyMember">
+            <app-family-member-resume [model]="mainFamilyMember"></app-family-member-resume>
+        </div>
+        <h3 class="mt-2 mb-0"><strong>Ações do assistente</strong></h3>
+        <div class="d-flex justify-content-start">
+            <mat-form-field appearance="outline" class="w-100">
+                <input matInput/>
+                <button mat-icon-button matSuffix color="primary" aria-label="Adicionar">
+                    <mat-icon style="font-size: 20px;">add</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <h3 class="mt-2 mb-0"><strong>Ações do assistido</strong></h3>
+        <div class="d-flex justify-content-start">
+            <mat-form-field appearance="outline" class="w-100">
+                <input matInput/>
+                <button mat-icon-button matSuffix color="primary" aria-label="Adicionar">
+                    <mat-icon style="font-size: 20px;">add</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+    </div>
+</div>
