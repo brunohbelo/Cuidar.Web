@@ -4,6 +4,7 @@ import { FamilyMember } from '../FamilyMember';
 
 export class FamilyMemberDTO {
     constructor(familyMember: FamilyMember) {
+        this.id = familyMember.id;
         this.birthDate = familyMember.birthDate;
         this.documentId = familyMember.documentId;
         this.gender = getEnumKeyByEnumValue(FamilyMemberGender, familyMember.gender);
@@ -11,6 +12,7 @@ export class FamilyMemberDTO {
         this.occupation = familyMember.occupation;
     }
 
+    public id: string;
     public birthDate: Date | undefined;
     public documentId: string;
     public gender: string;

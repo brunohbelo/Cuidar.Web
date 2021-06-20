@@ -4,10 +4,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { pluck } from 'rxjs/operators';
+import { DependentFamilyMember } from 'src/app/models/DependentFamilyMember';
 import { FamilyActionPlanItemCreationDTO } from 'src/app/models/dtos/FamilyActionPlanItemCreationDTO';
 import { FamilyActionPlanItemDTO } from 'src/app/models/dtos/FamilyActionPlanItemDTO';
 import { FamilyDTO } from 'src/app/models/dtos/FamilyDTO';
 import { FamilyMemberNoYesFlag } from 'src/app/models/enums/FamilyMemberNoYesFlag';
+import { FamilyMember } from 'src/app/models/FamilyMember';
 import { MainFamilyMember } from 'src/app/models/MainFamilyMember';
 import { ActionPlanService } from 'src/app/services/ActionPlan.service';
 import { DataShareService } from 'src/app/services/DataShare.service';
@@ -68,11 +70,19 @@ export class FamilyActionPlanComponent implements OnInit {
   }
 
   openDialog(assistentItem: boolean): void {
+
+    const faMembers = new Array<FamilyMember>();
+    faMembers.push(this.mainFamilyMember);
+    this.family.dependentMembers.forEach(x => {
+      faMembers.push(DependentFamilyMember.fromDTO(x, this.mainFamilyMember));
+    });
+
     const dialogRef = this.dialog.open(FamilyActionPlanItemComponent, {
       width: '400px',
       data: {
         description: !assistentItem ? this.taskAssistidoDescription : this.taskAssistenteDescription,
         isAssistentItem: assistentItem,
+        familyMembers: faMembers,
         dueDate: undefined,
         assistenceDueDate: this.mainFamilyMember.assistenceDueDate
       }
@@ -92,6 +102,7 @@ export class FamilyActionPlanComponent implements OnInit {
     item.description = data.description;
     item.isAssistentTask = data.isAssistentItem ? FamilyMemberNoYesFlag.Yes : FamilyMemberNoYesFlag.No;
     item.dueDate = data.dueDate ?? null;
+    item.referencedFamilyMemberId = data.referencedFamilyMemberId;
 
     this.actionPlanService.InsertActionPlanTask(this.mainFamilyMemberId, item).subscribe({
       next: () => {

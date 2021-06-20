@@ -49,6 +49,7 @@ export class MainFamilyMember extends FamilyMember {
     public static fromDTO(dto: MainFamilyMemberDTO): MainFamilyMember {
 
         const member = new MainFamilyMember();
+        member.id = dto.id;
         member.birthDate = dto.birthDate;
         member.documentId = dto.documentId;
         member.fullName = dto.fullName;

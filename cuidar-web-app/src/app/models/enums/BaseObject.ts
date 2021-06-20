@@ -1,7 +1,7 @@
 export class BaseObject {
-    public id: number;
+    public id: string;
 
     constructor() {
-        this.id = 0;
+        this.id = '';
     }
 }

@@ -21,12 +21,13 @@
                 </mat-form-field>
             </div>
             <div class="lista-acoes">
-                <div *ngFor="let item of ActionPlanTaskAssistente">
+                <div class="pt-1 pb-1" *ngFor="let item of ActionPlanTaskAssistente">
                     <mat-checkbox class="w-100" [checked]="item.done.toString() === 'Yes'" [color]="'primary'">
                         {{item.description}}
                     </mat-checkbox>
-                    <div class="text-right font-italic pr-2" *ngIf="item.dueDate">
-                        Até: {{item.dueDate | date: 'dd/MM/yyyy'}}
+                    <div class="d-flex justify-content-between pl-1 pr-1">
+                        <span *ngIf="item.referencedFamilyMember_Id" class="text-left"><span class="font-italic">Membro: </span>{{item.referencedFamilyMember_Name}}</span>
+                        <span *ngIf="item.dueDate" class="text-right"><span class="font-italic">Até: </span>{{item.dueDate | date: 'dd/MM/yyyy'}}</span>
                     </div>
                 </div>
             </div>
@@ -44,9 +45,13 @@
             </div>
             <div class="lista-acoes">
                 <div *ngFor="let item of ActionPlanTaskAssistido">
-                    <mat-label>
+                    <mat-checkbox class="w-100" [checked]="item.done.toString() === 'Yes'" [color]="'primary'">
                         {{item.description}}
-                    </mat-label>
+                    </mat-checkbox>
+                    <div class="d-flex justify-content-between pl-1 pr-1">
+                        <span *ngIf="item.referencedFamilyMember_Id" class="text-left"><span class="font-italic">Membro: </span>{{item.referencedFamilyMember_Name}}</span>
+                        <span *ngIf="item.dueDate" class="text-right"><span class="font-italic">Até: </span>{{item.dueDate | date: 'dd/MM/yyyy'}}</span>
+                    </div>
                 </div>
             </div>
         </section>

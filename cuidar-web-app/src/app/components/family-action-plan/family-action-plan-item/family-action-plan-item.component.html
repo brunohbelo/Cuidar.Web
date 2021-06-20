@@ -2,12 +2,18 @@
     <h1 mat-dialog-title>Deseja informar detalhes?</h1>
     <div mat-dialog-content>
         <mat-form-field appearance="outline" class="w-100">
-            <mat-label>Deseja informar uma data de conclusão?</mat-label>
+            <mat-label>Possui data de conclusão?</mat-label>
             <input type="date" [(ngModel)]="data.dueDate" matInput placeholder="Ex. 29/12/2021">
         </mat-form-field>
-        <!-- <mat-form-field appearance="outline" class="w-100">
-        <input matInput [(ngModel)]="ActionPlanItem.dueDate" placeholder="Responsável" />
-    </mat-form-field> -->
+        <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Membro família?</mat-label>
+            <mat-select [(value)]="data.referencedFamilyMemberId" matNativeControl>
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let item of data.familyMembers" [value]="item.id">
+                    {{item.fullName}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
     </div>
     <div mat-dialog-actions>
         <button mat-flat-button (click)="SaveItem_Click()" mat-raised-button color="primary">

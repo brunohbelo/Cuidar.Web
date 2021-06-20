@@ -2,12 +2,16 @@ import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FamilyActionPlanItemDTO } from 'src/app/models/dtos/FamilyActionPlanItemDTO';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FamilyMember } from 'src/app/models/FamilyMember';
 
 export interface ActionPlanItemDialog {
   description: string;
   isAssistentItem: boolean;
   dueDate: Date | undefined;
   assistenceDueDate: Date;
+  referencedFamilyMemberId: string;
+  familyMembers: FamilyMember[];
+
 }
 
 @Component({

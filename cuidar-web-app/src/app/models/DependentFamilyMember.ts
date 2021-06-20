@@ -18,6 +18,7 @@ export class DependentFamilyMember extends FamilyMember {
 
     public static fromDTO(dto: DependentFamilyMemberDTO, mainFamilyMeber: MainFamilyMember): DependentFamilyMember {
         const member = new DependentFamilyMember(mainFamilyMeber);
+        member.id = dto.id;
         member.birthDate = dto.birthDate;
         member.documentId = dto.documentId;
         member.fullName = dto.fullName;
