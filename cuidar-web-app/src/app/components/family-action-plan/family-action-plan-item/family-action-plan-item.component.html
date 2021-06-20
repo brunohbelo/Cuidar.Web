@@ -1,0 +1,17 @@
+<div class="family-action-item-container m-auto">
+    <h1 mat-dialog-title>Deseja informar detalhes?</h1>
+    <div mat-dialog-content>
+        <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Deseja informar uma data de conclusão?</mat-label>
+            <input type="date" [(ngModel)]="data.dueDate" matInput placeholder="Ex. 29/12/2021">
+        </mat-form-field>
+        <!-- <mat-form-field appearance="outline" class="w-100">
+        <input matInput [(ngModel)]="ActionPlanItem.dueDate" placeholder="Responsável" />
+    </mat-form-field> -->
+    </div>
+    <div mat-dialog-actions>
+        <button mat-flat-button (click)="SaveItem_Click()" mat-raised-button color="primary">
+            Adicionar ação
+        </button>
+    </div>
+</div>

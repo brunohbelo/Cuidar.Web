@@ -42,6 +42,8 @@ export class MainFamilyMember extends FamilyMember {
     public housingTypeNotes: string;
     public economicSituationNotes: string;
     public socialAssistenceNeedsNotes: string;
+    public systemRegistrationDate: Date | undefined;
+    public assistenceDueDate: Date | undefined;
 
 
     public static fromDTO(dto: MainFamilyMemberDTO): MainFamilyMember {
@@ -66,6 +68,9 @@ export class MainFamilyMember extends FamilyMember {
         member.housingTypeNotes = dto.housingTypeNotes;
         member.economicSituationNotes = dto.economicSituationNotes;
         member.socialAssistenceNeedsNotes = dto.socialAssistenceNeedsNotes;
+        member.systemRegistrationDate = dto.systemRegistrationDate;
+        member.assistenceDueDate = dto.assistenceDueDate;
+
         return member;
     }
 }

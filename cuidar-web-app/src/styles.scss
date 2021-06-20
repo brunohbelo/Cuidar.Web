@@ -11,28 +11,6 @@ $tirdhRem: 1rem;
 $forthRem: 3rem;
 $color-purple-light: #99879D;
 
-// .mat-form-field-subscript-wrapper{
-//     padding-left: 5px;
-// }
-
-// .mat-form-field.ng-invalid{
-//     margin-bottom: 7px !important;
-// }
-
-// .mat-form-field-flex {
-//     border-top: $borderSolidGray;
-//     border-left: $borderSolidGray;
-//     border-right: $borderSolidGray;
-//     border-radius: $inputBorderRadius;
-//     padding: 5px;
-// }
-
-// .mat-form-field-underline{
-//     width: 95% !important;
-//     margin-left: 2.5%;
-// }
-
-
 .color-purple-light{
     color: $color-purple-light;
 }
@@ -53,6 +31,9 @@ $color-purple-light: #99879D;
     text-align: center;
 }
 
+.font-italic{
+    font-style: italic;
+}
 
 .d-flex{
     display: flex;
@@ -247,6 +228,27 @@ $color-purple-light: #99879D;
 
 .mb-4{
     margin-bottom: $forthRem;
+}
+
+
+.ml-0{
+    margin-left: 0px !important;
+}
+
+.ml-1{
+    margin-left: $firstRem !important;
+}
+
+.ml-2{
+    margin-left: $secondRem !important;
+}
+
+.ml-3{
+    margin-left: $tirdhRem !important;
+}
+
+.ml-4{
+    margin-left: $forthRem !important;
 }
 
 .rotate-90{

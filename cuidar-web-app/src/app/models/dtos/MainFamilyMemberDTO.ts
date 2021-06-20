@@ -25,6 +25,7 @@ export class MainFamilyMemberDTO extends FamilyMemberDTO {
         this.housingTypeNotes = mainFamilyMeber.housingTypeNotes;
         this.economicSituationNotes = mainFamilyMeber.economicSituationNotes;
         this.socialAssistenceNeedsNotes = mainFamilyMeber.socialAssistenceNeedsNotes;
+        this.assistenceDueDate = mainFamilyMeber.assistenceDueDate;
     }
 
     public addressPostalCode: string;
@@ -42,5 +43,6 @@ export class MainFamilyMemberDTO extends FamilyMemberDTO {
     public economicSituationNotes: string;
     public socialAssistenceNeedsNotes: string;
     public systemRegistrationDate: Date | undefined;
+    public assistenceDueDate: Date | undefined;
     public generalStatus!: FamilyStatus;
 }

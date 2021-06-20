@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -26,6 +25,9 @@ import { WebApiInterceptor } from './interceptors/webApiInterceptor';
 import { FamilySearchResumeComponent } from './components/family-search/family-search-resume/family-search-resume.component';
 import { FamilyApprovalReviewComponent } from './components/family-approval-review/family-approval-review.component';
 import { FamilyActionPlanComponent } from './components/family-action-plan/family-action-plan.component';
+import { FamilyActionPlanItemComponent } from './components/family-action-plan/family-action-plan-item/family-action-plan-item.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import { FamilyActionPlanComponent } from './components/family-action-plan/famil
     FamilySearchComponent,
     FamilySearchResumeComponent,
     FamilyApprovalReviewComponent,
-    FamilyActionPlanComponent
+    FamilyActionPlanComponent,
+    FamilyActionPlanItemComponent
   ],
   imports: [
     BrowserModule,
@@ -53,6 +56,8 @@ import { FamilyActionPlanComponent } from './components/family-action-plan/famil
     MatExpansionModule,
     MatIconModule,
     MatSnackBarModule,
+    MatDialogModule,
+    MatCheckboxModule,
     RxReactiveFormsModule,
     ScrollingModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
