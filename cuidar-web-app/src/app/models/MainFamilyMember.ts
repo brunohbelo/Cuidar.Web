@@ -2,6 +2,7 @@ import { MainFamilyMemberDTO } from './dtos/MainFamilyMemberDTO';
 import { FamilyMemberCivilStatus } from './enums/FamilyMemberCivilStatus';
 import { FamilyMemberGender } from './enums/FamilyMemberGender';
 import { FamilyMemberHousingType } from './enums/FamilyMemberHousingType';
+import { FamilyMemberNoYesFlag } from './enums/FamilyMemberNoYesFlag';
 import { FamilyMemberSchooling } from './enums/FamilyMemberSchooling';
 import { FamilyMemberType } from './enums/FamilyMemberType';
 import { FamilyMember } from './FamilyMember';
@@ -26,6 +27,8 @@ export class MainFamilyMember extends FamilyMember {
         this.housingTypeNotes = '';
         this.economicSituationNotes = '';
         this.socialAssistenceNeedsNotes = '';
+        this.religionNotes = '';
+        this.baptizedChildren = FamilyMemberNoYesFlag.No;
     }
 
     public addressPostalCode: string;
@@ -44,6 +47,8 @@ export class MainFamilyMember extends FamilyMember {
     public socialAssistenceNeedsNotes: string;
     public systemRegistrationDate: Date | undefined;
     public assistenceDueDate: Date | undefined;
+    public religionNotes: string;
+    public baptizedChildren: FamilyMemberNoYesFlag;
 
 
     public static fromDTO(dto: MainFamilyMemberDTO): MainFamilyMember {
@@ -71,6 +76,8 @@ export class MainFamilyMember extends FamilyMember {
         member.socialAssistenceNeedsNotes = dto.socialAssistenceNeedsNotes;
         member.systemRegistrationDate = dto.systemRegistrationDate;
         member.assistenceDueDate = dto.assistenceDueDate;
+        member.religionNotes = dto.religionNotes;
+        member.baptizedChildren =  FamilyMemberNoYesFlag[dto.baptizedChildren as keyof typeof FamilyMemberNoYesFlag];
 
         return member;
     }

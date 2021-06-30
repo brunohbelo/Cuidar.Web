@@ -1,6 +1,7 @@
 import { getEnumKeyByEnumValue } from 'src/app/helpers/enumHelper';
 import { FamilyMemberCivilStatus } from '../enums/FamilyMemberCivilStatus';
 import { FamilyMemberHousingType } from '../enums/FamilyMemberHousingType';
+import { FamilyMemberNoYesFlag } from '../enums/FamilyMemberNoYesFlag';
 import { FamilyMemberSchooling } from '../enums/FamilyMemberSchooling';
 import { FamilyStatus } from '../enums/FamilyStatus';
 import { MainFamilyMember } from '../MainFamilyMember';
@@ -26,6 +27,8 @@ export class MainFamilyMemberDTO extends FamilyMemberDTO {
         this.economicSituationNotes = mainFamilyMeber.economicSituationNotes;
         this.socialAssistenceNeedsNotes = mainFamilyMeber.socialAssistenceNeedsNotes;
         this.assistenceDueDate = mainFamilyMeber.assistenceDueDate;
+        this.religionNotes = mainFamilyMeber.religionNotes;
+        this.baptizedChildren =  getEnumKeyByEnumValue(FamilyMemberNoYesFlag, mainFamilyMeber.baptizedChildren);
     }
 
     public addressPostalCode: string;
@@ -44,5 +47,7 @@ export class MainFamilyMemberDTO extends FamilyMemberDTO {
     public socialAssistenceNeedsNotes: string;
     public systemRegistrationDate: Date | undefined;
     public assistenceDueDate: Date | undefined;
+    public religionNotes: string;
     public generalStatus!: FamilyStatus;
+    public baptizedChildren: string;
 }

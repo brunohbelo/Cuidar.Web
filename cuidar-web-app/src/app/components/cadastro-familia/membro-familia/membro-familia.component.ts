@@ -13,6 +13,7 @@ import { DependentFamilyMember } from 'src/app/models/DependentFamilyMember';
 import { take } from 'rxjs/operators';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
+import { FamilyMemberNoYesFlag } from 'src/app/models/enums/FamilyMemberNoYesFlag';
 
 @Component({
   selector: 'app-membro-familia',
@@ -43,6 +44,7 @@ export class MembroFamiliaComponent implements OnInit {
   housingOptions = FamilyMemberHousingType;
   familyLinkTypeOptions = FamilyMemberLinkType;
   familyMemberType = FamilyMemberType;
+  familyMemberNoYesFlag = FamilyMemberNoYesFlag;
   ufOptions = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO', 'DF'];
 
   @ViewChildren('autosize') autosize!: CdkTextareaAutosize;
@@ -100,6 +102,8 @@ export class MembroFamiliaComponent implements OnInit {
     this.formMembroFamilia.addControl('contactEmail', new FormControl(mainModel.contactEmail, [Validators.email]));
     this.formMembroFamilia.addControl('economicSituationNotes', new FormControl(mainModel.economicSituationNotes, [Validators.required]));
     this.formMembroFamilia.addControl('contactPhoneNumber', new FormControl(mainModel.contactPhoneNumber));
+    this.formMembroFamilia.addControl('baptizedChildren', new FormControl(mainModel.baptizedChildren));
+    this.formMembroFamilia.addControl('religionNotes', new FormControl(mainModel.religionNotes));
   }
 
   private addDependentMemberFormControls(): void {

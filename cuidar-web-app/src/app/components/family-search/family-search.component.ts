@@ -36,6 +36,9 @@ export class FamilySearchComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.nameSearchChangeSubscription = this.nameSearchChanged.pipe(debounceTime(1000), distinctUntilChanged())
       .subscribe(newName => {
+        if (newName.length < 3) {
+          return;
+        }
         this.searchingName = newName;
         this.dataSource.searchByName(this.searchingName);
       });
