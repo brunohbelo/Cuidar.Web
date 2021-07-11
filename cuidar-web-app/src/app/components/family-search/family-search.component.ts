@@ -8,6 +8,7 @@ import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 import { distinctUntilChanged } from 'rxjs/operators';
 import { FamilyStatusHelper } from 'src/app/helpers/familyStatusHelper';
 import { FamilyMemberFamilySearchResponse, FamilySearchDTO } from 'src/app/models/dtos/FamilySearchDTO';
+import { ActionPlanService } from 'src/app/services/ActionPlan.service';
 import { FamilyService } from 'src/app/services/Family.service';
 
 @Component({
@@ -29,7 +30,8 @@ export class FamilySearchComponent implements OnInit, OnDestroy {
   @ViewChild('viewPort')
   virtualScroll!: CdkVirtualScrollViewport;
 
-  constructor(private familyService: FamilyService, private changeDetectorRefs: ChangeDetectorRef, private router: Router) {
+  // tslint:disable-next-line:max-line-length
+  constructor(private familyService: FamilyService, private changeDetectorRefs: ChangeDetectorRef, private router: Router, private actionPlanService: ActionPlanService) {
     this.innerWidth = window.innerWidth;
   }
 
@@ -50,7 +52,15 @@ export class FamilySearchComponent implements OnInit, OnDestroy {
 
   detailsClick(syndicanceCompleted: boolean, familyId: string): void {
     if (syndicanceCompleted) {
-      this.router.navigate(['/family-action-plan', familyId]);
+      this.actionPlanService.LoadActionPlan(familyId).subscribe({
+        next: (data) => {
+          if (data.actionList.length === 0) {
+            this.router.navigate(['/family-action-plan', familyId]);
+          } else {
+            this.router.navigate(['/family-menu', familyId]);
+          }
+        }
+      });
     } else {
       this.router.navigate(['/family-sindicance', familyId]);
     }

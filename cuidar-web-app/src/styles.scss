@@ -19,6 +19,19 @@ $color-purple-light: #99879D;
     background-color: $color-purple-light;
 }
 
+.bg-purple{
+    color: white;
+    background-color: #9378FF;
+}
+
+.bg-stripped >:nth-child(odd){
+    background-color: #f0dff3;
+}
+
+.bg-stripped >:nth-child(even){
+    background-color: #f6cfff;
+}
+
 .text-left{
     text-align: left;
 }

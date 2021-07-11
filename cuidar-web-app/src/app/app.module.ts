@@ -28,6 +28,7 @@ import { FamilyActionPlanComponent } from './components/family-action-plan/famil
 import { FamilyActionPlanItemComponent } from './components/family-action-plan/family-action-plan-item/family-action-plan-item.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { FamilyMenuComponent } from './components/family-menu/family-menu.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     FamilySearchResumeComponent,
     FamilyApprovalReviewComponent,
     FamilyActionPlanComponent,
-    FamilyActionPlanItemComponent
+    FamilyActionPlanItemComponent,
+    FamilyMenuComponent
   ],
   imports: [
     BrowserModule,

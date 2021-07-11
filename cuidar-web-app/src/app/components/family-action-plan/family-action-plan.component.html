@@ -21,11 +21,11 @@
                 </mat-form-field>
             </div>
             <div class="lista-acoes">
-                <div class="pt-1 pb-1" *ngFor="let item of ActionPlanTaskAssistente">
-                    <mat-checkbox class="w-100" [checked]="item.done.toString() === 'Yes'" [color]="'primary'">
+                <div class="mt-2 mb-2" *ngFor="let item of ActionPlanTaskAssistente">
+                    <mat-checkbox disabled class="w-100 task-description" [checked]="item.done.toString() === 'Yes'" [color]="'primary'">
                         {{item.description}}
                     </mat-checkbox>
-                    <div class="d-flex justify-content-between pl-1 pr-1">
+                    <div class="d-flex justify-content-between pl-1 pr-1 task-footer">
                         <span *ngIf="item.referencedFamilyMember_Id" class="text-left"><span class="font-italic">Membro: </span>{{item.referencedFamilyMember_Name}}</span>
                         <span *ngIf="item.dueDate" class="text-right"><span class="font-italic">Até: </span>{{item.dueDate | date: 'dd/MM/yyyy'}}</span>
                     </div>
@@ -44,16 +44,21 @@
                 </mat-form-field>
             </div>
             <div class="lista-acoes">
-                <div *ngFor="let item of ActionPlanTaskAssistido">
-                    <mat-checkbox class="w-100" [checked]="item.done.toString() === 'Yes'" [color]="'primary'">
+                <div class="mt-2 mb-2" *ngFor="let item of ActionPlanTaskAssistido">
+                    <mat-checkbox disabled class="w-100 task-description" [checked]="item.done.toString() === 'Yes'" [color]="'primary'">
                         {{item.description}}
                     </mat-checkbox>
-                    <div class="d-flex justify-content-between pl-1 pr-1">
+                    <div class="d-flex justify-content-between pl-1 pr-1 task-footer">
                         <span *ngIf="item.referencedFamilyMember_Id" class="text-left"><span class="font-italic">Membro: </span>{{item.referencedFamilyMember_Name}}</span>
                         <span *ngIf="item.dueDate" class="text-right"><span class="font-italic">Até: </span>{{item.dueDate | date: 'dd/MM/yyyy'}}</span>
                     </div>
                 </div>
             </div>
         </section>
+        <div>
+            <button id="btn-save-plan" (click)="SaveActionPlan()" mat-flat-button mat-raised-button color="primary">
+                Salvar
+            </button>
+        </div>
     </div>
 </div>

@@ -1,9 +1,9 @@
-import { Route } from '@angular/compiler/src/core';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { pluck } from 'rxjs/operators';
+import { getEnumKeyByEnumValue } from 'src/app/helpers/enumHelper';
 import { DependentFamilyMember } from 'src/app/models/DependentFamilyMember';
 import { FamilyActionPlanItemCreationDTO } from 'src/app/models/dtos/FamilyActionPlanItemCreationDTO';
 import { FamilyActionPlanItemDTO } from 'src/app/models/dtos/FamilyActionPlanItemDTO';
@@ -32,6 +32,7 @@ export class FamilyActionPlanComponent implements OnInit {
   public taskAssistenteDescription = '';
 
   public actionPlanTaskList = new Array<FamilyActionPlanItemDTO>();
+  public actionPlanCreationTaskList = new Array<FamilyActionPlanItemCreationDTO>();
   public get ActionPlanTaskAssistente(): Array<FamilyActionPlanItemDTO> {
     return this.actionPlanTaskList.filter(x => x.isAssistentTask.toString() === 'Yes');
   }
@@ -103,21 +104,25 @@ export class FamilyActionPlanComponent implements OnInit {
     item.isAssistentTask = data.isAssistentItem ? FamilyMemberNoYesFlag.Yes : FamilyMemberNoYesFlag.No;
     item.dueDate = data.dueDate ?? null;
     item.referencedFamilyMemberId = data.referencedFamilyMemberId;
+    this.actionPlanCreationTaskList.push(item);
 
-    this.actionPlanService.InsertActionPlanTask(this.mainFamilyMemberId, item).subscribe({
-      next: () => {
-        this.snackBar.open('Tarefa de plano de ação criada com sucesso', '', { duration: 2000 });
-        if (data.isAssistentItem) {
-          this.taskAssistenteDescription = '';
-        } else {
-          this.taskAssistidoDescription = '';
-        }
+    const task = new FamilyActionPlanItemDTO();
+    task.description = data.description;
+    task.dueDate = data.dueDate;
+    task.done = 'No' as FamilyMemberNoYesFlag;
+    task.isAssistentTask = data.isAssistentItem
+      ? getEnumKeyByEnumValue(FamilyMemberNoYesFlag, this.familyMemberNoYesFlag.Yes) as FamilyMemberNoYesFlag
+      : getEnumKeyByEnumValue(FamilyMemberNoYesFlag, this.familyMemberNoYesFlag.No) as FamilyMemberNoYesFlag;
+    task.referencedFamilyMember_Id = data.referencedFamilyMemberId;
+    task.referencedFamilyMember_Name = data.familyMembers.length > 0 ? data.familyMembers[0].fullName : '';
+    this.actionPlanTaskList.push(task);
 
-        this.GetActionPlan();
-      }, error: () => {
-        this.snackBar.open('', 'Houve um erro ao inserir a tarefa, tente novamente mais tarde', { duration: 2000, panelClass: 'panel-snackbar' });
-      }
-    });
+    if (data.isAssistentItem) {
+      this.taskAssistenteDescription = '';
+    } else {
+      this.taskAssistidoDescription = '';
+    }
+
   }
 
   public GetActionPlan(): void {
@@ -126,6 +131,26 @@ export class FamilyActionPlanComponent implements OnInit {
         this.actionPlanTaskList = data.actionList;
       }
     });
+  }
+
+  public SaveActionPlan(): void {
+
+    for (let index = 0; index < this.actionPlanCreationTaskList.length; index++) {
+      const task = this.actionPlanCreationTaskList[index];
+
+      this.actionPlanService.InsertActionPlanTask(this.mainFamilyMemberId, task).subscribe({
+        next: () => {
+          if (index === this.actionPlanCreationTaskList.length - 1) {
+            this.snackBar.open('Plano de ação criado com sucesso!', '', { duration: 2000 });
+          }
+
+          this.GetActionPlan();
+        }, error: () => {
+          this.snackBar.open('', 'Houve um erro ao inserir uma tarefa, tente novamente mais tarde', { duration: 2000, panelClass: 'panel-snackbar' });
+        }
+      });
+    }
+
   }
 
 }
