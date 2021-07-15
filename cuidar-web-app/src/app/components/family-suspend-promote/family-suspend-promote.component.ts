@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -17,6 +18,8 @@ export class FamilySuspendPromoteComponent implements OnInit {
   constructor(private syndicanceService: FamilySyndicanceService, private route: ActivatedRoute, private router: Router, public dialog: MatDialog, private snackBar: MatSnackBar) {
   }
 
+  @ViewChild(NgForm) form!: NgForm;
+
   public operationType!: 'suspend' | 'promote';
   public syndicationNotes = '';
   public mainMemberId = '';
@@ -27,8 +30,12 @@ export class FamilySuspendPromoteComponent implements OnInit {
     });
   }
 
-  Atualizar_Click(): void{
+  Atualizar_Click(): void {
     this.OpenDialog();
+  }
+
+  FormValid(): boolean {
+    return this.form?.valid ?? false;
   }
 
   private OpenDialog(): void {
@@ -68,7 +75,7 @@ export class FamilySuspendPromoteComponent implements OnInit {
     }
   }
 
-  private alertSuccessAndReturn(mensagem: string): void{
+  private alertSuccessAndReturn(mensagem: string): void {
     this.snackBar.open(mensagem, '', { duration: 5000 });
     this.router.navigate(['family-search']);
   }
