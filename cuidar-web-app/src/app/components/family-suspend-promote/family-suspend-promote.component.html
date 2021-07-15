@@ -1,0 +1,24 @@
+<div class="family-suspend-promote m-auto">
+    <div id="conteudo">
+        <app-nav-bar></app-nav-bar>
+        <h1 class="mat-display mb-2"><strong>Promover ou Suspender</strong></h1>
+        <section class="m-auto w-80 mt-4 mb-3">
+            <mat-radio-group class="d-flex justify-content-around" [(ngModel)]="operationType">
+                <mat-radio-button color="primary" value="promote">Promovido</mat-radio-button>
+                <mat-radio-button color="primary" value="suspend">Suspenso</mat-radio-button>
+            </mat-radio-group>
+        </section>
+        <div class="mt-4 observacoes border-top">
+            <h3 class="mb-2 mt-2"><strong>Observações</strong> (descreva o motivo da ação)</h3>
+            <mat-form-field appearance="outline" class="mb-3 w-100">
+                <textarea matInput name="txtCase" rows="10" placeholder="mensagem" [(ngModel)]="syndicationNotes" required>
+                </textarea>
+            </mat-form-field>
+        </div>
+        <div>
+            <button class="mt-2 mb-2" (click)="Atualizar_Click()" mat-flat-button mat-raised-button color="primary">
+                Atualizar
+            </button>
+        </div>
+    </div>
+</div>

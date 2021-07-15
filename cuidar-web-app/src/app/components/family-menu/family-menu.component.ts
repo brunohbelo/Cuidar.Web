@@ -23,7 +23,7 @@ export class FamilyMenuComponent implements OnInit {
   }
 
   private familyMemberNoYesFlag = FamilyMemberNoYesFlag;
-  private mainFamilyMemberId!: string;
+  public mainFamilyMemberId!: string;
   public dependentMembers!: Array<DependentFamilyMember>;
   public mainFamilyMember!: MainFamilyMember;
   public family!: FamilyDTO;

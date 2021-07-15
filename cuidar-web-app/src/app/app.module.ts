@@ -16,7 +16,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import {ScrollingModule} from '@angular/cdk/scrolling';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { FamilyMemberResumeComponent } from './components/family-member-resume/family-member-resume.component';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { HttpClientModule } from '@angular/common/http';
@@ -27,8 +27,12 @@ import { FamilyApprovalReviewComponent } from './components/family-approval-revi
 import { FamilyActionPlanComponent } from './components/family-action-plan/family-action-plan.component';
 import { FamilyActionPlanItemComponent } from './components/family-action-plan/family-action-plan-item/family-action-plan-item.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FamilyMenuComponent } from './components/family-menu/family-menu.component';
+import { FamilySuspendPromoteComponent } from './components/family-suspend-promote/family-suspend-promote.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { ConfirmationComponent } from './components/modals/confirmation/confirmation.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -43,7 +47,9 @@ import { FamilyMenuComponent } from './components/family-menu/family-menu.compon
     FamilyApprovalReviewComponent,
     FamilyActionPlanComponent,
     FamilyActionPlanItemComponent,
-    FamilyMenuComponent
+    FamilyMenuComponent,
+    FamilySuspendPromoteComponent,
+    ConfirmationComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +66,8 @@ import { FamilyMenuComponent } from './components/family-menu/family-menu.compon
     MatSnackBarModule,
     MatDialogModule,
     MatCheckboxModule,
+    MatRadioModule,
+    MatCardModule,
     RxReactiveFormsModule,
     ScrollingModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })

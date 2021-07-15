@@ -4,39 +4,50 @@
         <h1 class="mat-display mb-2"><strong>Visão Geral</strong></h1>
         <div>
             <app-family-member-resume [model]="mainFamilyMember"></app-family-member-resume>
-            <app-family-member-resume *ngFor="let member of dependentMembers" [model]="member"></app-family-member-resume>
+            <app-family-member-resume *ngFor="let member of dependentMembers" [model]="member">
+            </app-family-member-resume>
         </div>
         <div class="action-plan pl-2 pr-2">
             <div class="mt-2 atv d-flex justify-content-between">
                 <h1 class="mat-display mb-2"><strong>Plano de ação</strong></h1>
-                <span style="align-self: center;">{{getConcludedTasksCount()}} de {{actionPlanTaskList.length}} {{getConcludedTasksCount() > 1 ? 'Concluídos' : 'Concluído' }} </span>
+                <span style="align-self: center;">{{getConcludedTasksCount()}} de {{actionPlanTaskList.length}}
+                    {{getConcludedTasksCount() > 1 ? 'Concluídos' : 'Concluído' }} </span>
             </div>
             <div class="bg-stripped">
                 <div class="pt-2 pb-2 pr-1 pl-1" *ngFor="let task of actionPlanTaskList">
                     <div class="d-flex w-100 justify-content-between">
                         <div class="text-left">
                             <div><strong style="font-size: 18px;">{{task.description}}</strong></div>
-                            <div><span style="font-size: 12px; color: gray;">{{task.done.toString() === 'Yes' ? 'Concluído' : 'Em andamento' }}</span></div>
+                            <div><span style="font-size: 12px; color: gray;">{{task.done.toString() === 'Yes' ?
+                                    'Concluído' : 'Em andamento' }}</span></div>
                         </div>
                         <div class="text-left" style="align-self: center;">
-                            <span style="color: gray;">{{task.dueDate | date: 'dd/MM/yyyy' }}</span>    
+                            <span style="color: gray;">{{task.dueDate | date: 'dd/MM/yyyy' }}</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="family-status mt-2 mb-2 p-2 text-center bg-purple"> 
-            <div style="font-size: 18px;">Atendimento iniciado em {{mainFamilyMember.systemRegistrationDate | date: 'dd/MM/yyyy'}}</div>
+        <div class="family-status mt-2 mb-2 p-2 text-center bg-purple">
+            <div style="font-size: 18px;">Atendimento iniciado em {{mainFamilyMember.systemRegistrationDate | date:
+                'dd/MM/yyyy'}}</div>
             <div class="mt-1">Previsão para término em {{mainFamilyMember.assistenceDueDate | date: 'dd/MM/yyyy'}}</div>
         </div>
-        <button class="mt-2" mat-flat-button mat-raised-button color="primary">
-            Realizar atendimento
-        </button>
-        <button class="mt-2" mat-flat-button mat-raised-button color="primary">
-            Histórico de atendimentos
-        </button>
-        <button class="mt-2 mb-2" mat-flat-button mat-raised-button color="primary">
-            Promover ou Suspender
-        </button>
+        <div>
+            <button class="mt-2" mat-flat-button mat-raised-button color="primary">
+                Realizar atendimento
+            </button>
+        </div>
+        <div>
+            <button class="mt-2" mat-flat-button mat-raised-button color="primary">
+                Histórico de atendimentos
+            </button>
+        </div>
+        <div>
+            <button class="mt-2 mb-2" mat-flat-button mat-raised-button [routerLink]="['/family-suspend-promote', mainFamilyMemberId]" routerLinkActive="router-link-active" 
+            color="primary">
+                Promover ou Suspender
+            </button>
+        </div>
     </div>
 </div>
