@@ -1,0 +1,59 @@
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title><h2 class=".panel-header-description">Cadastros de famílias</h2></mat-panel-title>
+      <mat-panel-description><h2 class="panel-header-number">{{familiesStats.familiesCount}}</h2></mat-panel-description>
+    </mat-expansion-panel-header>
+    <div>
+      <table class="table-stats">
+        <tr>
+          <td class="td-families-stats-number"><p class="number-text-num">{{familiesStats.familyMembersCount}}</p></td>
+          <td class="td-families-stats-description"><p class="number-text-desc">membros</p></td>
+        </tr>
+        <tr>
+          <td colspan="2" style="border-bottom: solid 2px black;"></td>
+        </tr>
+        <tr>
+          <td class="td-families-stats-number"><p class="number-text-num-2">{{adultsCount}}</p></td>
+          <td class="td-families-stats-description"><p class="number-text-desc">adulto{{adultsCount > 1 ? 's' : '' }}</p></td>
+        </tr>
+        <tr *ngFor="let adultGender of adultsByGender.entries()" >
+          <td class="td-families-stats-number"><p class="number-text-num-3">{{adultGender[1]}}</p></td>
+          <td class="td-families-stats-description"><p class="number-text-desc-2">{{GetGenderText(adultGender[0])}}</p></td>
+        </tr>
+        <tr>
+          <td colspan="2" style="border-bottom: solid 2px black;"></td>
+        </tr>
+        <tr>
+          <td class="td-families-stats-number"><p class="number-text-num-2">{{childrenCount}}</p></td>
+          <td class="td-families-stats-description"><p class="number-text-desc">criança{{childrenCount > 1 ? 's' : '' }}</p></td>
+        </tr>
+        <tr *ngFor="let childrenGender of childrenByGender.entries()" >
+          <td class="td-families-stats-number"><p class="number-text-num-3">{{childrenGender[1]}}</p></td>
+          <td class="td-families-stats-description"><p class="number-text-desc-2">{{GetGenderText(childrenGender[0])}}</p></td>
+        </tr>
+    </table>
+  </div>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title style="text-align: left;"><h2>Administração</h2></mat-panel-title>
+    </mat-expansion-panel-header>
+    <div>
+      <table class="table-stats">
+        <tr>
+          <td class="td-families-stats-number"><p class="number-text-num">{{familiesStats.pendingApprovalCount}}</p></td>
+          <td class="td-families-stats-description"><p class="number-text-desc">pré-cadastros pendentes de análise</p></td>
+        </tr>
+        <tr>
+          <td class="td-families-stats-number"><p class="number-text-num">{{familiesStats.lastMonthFamiliesCount}}</p></td>
+          <td class="td-families-stats-description"><p class="number-text-desc">famílias estão no último mês de atendimento</p></td>
+        </tr>
+        <tr>
+          <td class="td-families-stats-number"><p class="number-text-num">{{familiesStats.expiredFamiliesCount}}</p></td>
+          <td class="td-families-stats-description"><p class="number-text-desc">famílias com plano de metas vencido</p></td>
+        </tr>
+      </table>
+  </div>
+  </mat-expansion-panel>
+</mat-accordion>

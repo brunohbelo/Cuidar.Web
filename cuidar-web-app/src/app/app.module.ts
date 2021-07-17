@@ -33,6 +33,8 @@ import { FamilySuspendPromoteComponent } from './components/family-suspend-promo
 import { MatRadioModule } from '@angular/material/radio';
 import { ConfirmationComponent } from './components/modals/confirmation/confirmation.component';
 import { MatCardModule } from '@angular/material/card';
+import { PlatformStatsComponent } from './components/platform-stats/platform-stats.component';
+import { PlatformStatsFamiliesComponent } from './components/platform-stats-families/platform-stats-families.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { MatCardModule } from '@angular/material/card';
     FamilyActionPlanItemComponent,
     FamilyMenuComponent,
     FamilySuspendPromoteComponent,
-    ConfirmationComponent
+    ConfirmationComponent,
+    PlatformStatsComponent,
+    PlatformStatsFamiliesComponent
   ],
   imports: [
     BrowserModule,

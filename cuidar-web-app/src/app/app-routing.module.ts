@@ -7,6 +7,7 @@ import { FamilyMenuComponent } from './components/family-menu/family-menu.compon
 import { FamilySearchComponent } from './components/family-search/family-search.component';
 import { FamilySuspendPromoteComponent } from './components/family-suspend-promote/family-suspend-promote.component';
 import { HomeComponent } from './components/home/home.component';
+import { PlatformStatsComponent } from './components/platform-stats/platform-stats.component';
 
 // Rotas novas devem ser adicionadas aqui
 const routes: Routes = [
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'family-sindicance/:id', component: FamilyApprovalReviewComponent },
   { path: 'family-action-plan/:id', component: FamilyActionPlanComponent },
   { path: 'family-menu/:id', component: FamilyMenuComponent },
-  { path: 'family-suspend-promote/:id', component: FamilySuspendPromoteComponent }
+  { path: 'family-suspend-promote/:id', component: FamilySuspendPromoteComponent },
+  { path: 'platform-stats', component: PlatformStatsComponent }
 ];
 
 @NgModule({
