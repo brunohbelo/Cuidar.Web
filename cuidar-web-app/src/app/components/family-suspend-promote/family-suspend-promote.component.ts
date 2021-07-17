@@ -25,7 +25,7 @@ export class FamilySuspendPromoteComponent implements OnInit {
   public mainMemberId = '';
 
   ngOnInit(): void {
-    this.route.params.pipe(pluck('id')).toPromise().then(id => {
+    this.route.params.pipe(pluck('id')).subscribe(id => {
       this.mainMemberId = id;
     });
   }
