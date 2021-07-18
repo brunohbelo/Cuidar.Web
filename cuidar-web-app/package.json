@@ -23,6 +23,7 @@
     "@angular/router": "~11.2.7",
     "@angular/service-worker": "~11.2.7",
     "@rxweb/reactive-form-validators": "^2.1.2",
+    "@swimlane/ngx-charts": "^18.0.1",
     "help": "^3.0.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",

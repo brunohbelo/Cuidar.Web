@@ -35,6 +35,7 @@ import { ConfirmationComponent } from './components/modals/confirmation/confirma
 import { MatCardModule } from '@angular/material/card';
 import { PlatformStatsComponent } from './components/platform-stats/platform-stats.component';
 import { PlatformStatsFamiliesComponent } from './components/platform-stats-families/platform-stats-families.component';
+import { NgxChartsModule }from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { PlatformStatsFamiliesComponent } from './components/platform-stats-fami
     MatCardModule,
     RxReactiveFormsModule,
     ScrollingModule,
+    NgxChartsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
