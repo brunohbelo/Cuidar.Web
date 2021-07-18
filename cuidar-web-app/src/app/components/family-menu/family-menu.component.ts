@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { pluck } from 'rxjs/operators';
+import { FamilyStatusHelper } from 'src/app/helpers/familyStatusHelper';
 import { DependentFamilyMember } from 'src/app/models/DependentFamilyMember';
 import { FamilyActionPlanItemDTO } from 'src/app/models/dtos/FamilyActionPlanItemDTO';
 import { FamilyDTO } from 'src/app/models/dtos/FamilyDTO';
@@ -23,6 +24,7 @@ export class FamilyMenuComponent implements OnInit {
   }
 
   private familyMemberNoYesFlag = FamilyMemberNoYesFlag;
+  public familyStatusHelper = FamilyStatusHelper;
   public mainFamilyMemberId!: string;
   public dependentMembers!: Array<DependentFamilyMember>;
   public mainFamilyMember!: MainFamilyMember;

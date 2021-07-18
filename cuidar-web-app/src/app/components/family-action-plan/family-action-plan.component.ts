@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { pluck } from 'rxjs/operators';
 import { getEnumKeyByEnumValue } from 'src/app/helpers/enumHelper';
+import { FamilyStatusHelper } from 'src/app/helpers/familyStatusHelper';
 import { DependentFamilyMember } from 'src/app/models/DependentFamilyMember';
 import { FamilyActionPlanItemCreationDTO } from 'src/app/models/dtos/FamilyActionPlanItemCreationDTO';
 import { FamilyActionPlanItemDTO } from 'src/app/models/dtos/FamilyActionPlanItemDTO';
@@ -25,6 +26,7 @@ export class FamilyActionPlanComponent implements OnInit {
 
   private familyMemberNoYesFlag = FamilyMemberNoYesFlag;
   private mainFamilyMemberId!: string;
+  public familyStatusHelper = FamilyStatusHelper;
   public mainFamilyMember!: MainFamilyMember;
   public family!: FamilyDTO;
 

@@ -3,7 +3,7 @@
         <app-nav-bar></app-nav-bar>
         <div class="pl-2 pr-2 d-flex justify-content-between">
             <h1 class="mat-display text-center mb-2"><strong>Visão Geral</strong></h1>
-            <div class="status color-purple-light text-right pl-2 pr-2"
+            <div class="family-status color-purple-light text-right pl-2 pr-2"
                 [ngStyle]="familyStatusHelper.getStatusCollor(familyStatusHelper.getFamilyStatus(family.mainFamilyMember.generalStatus))">
                 {{familyStatusHelper.getFamilyStatus(family.mainFamilyMember.generalStatus)}}
             </div>
