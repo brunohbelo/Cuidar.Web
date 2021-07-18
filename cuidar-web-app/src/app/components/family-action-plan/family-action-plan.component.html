@@ -1,7 +1,14 @@
 <div class="family-action-plan-container m-auto">
     <div id="conteudo" *ngIf="mainFamilyMember">
         <app-nav-bar></app-nav-bar>
-        <h1 class="mat-display mb-2"><strong>Plano de ação</strong></h1>
+        <!-- <h1 class="mat-display mb-2"><strong>Plano de ação</strong></h1> -->
+        <div class="pl-2 pr-2 mb-2 d-flex justify-content-around">
+            <h1 class="mat-display text-center"><strong>Plano de ação</strong></h1>
+            <div class="family-status color-purple-light text-right pl-2 pr-2"
+                [ngStyle]="familyStatusHelper.getStatusCollor(familyStatusHelper.getFamilyStatus(family.mainFamilyMember.generalStatus))">
+                {{familyStatusHelper.getFamilyStatus(family.mainFamilyMember.generalStatus)}}
+            </div>
+        </div>
         <div class="text-left color-purple-light pl-1 mb-2">
             <div>Cadastrado em: <strong>{{mainFamilyMember.systemRegistrationDate | date: 'dd/MM/yyyy'}}</strong></div>
             <div>Válido até: <strong>{{mainFamilyMember.assistenceDueDate | date: 'dd/MM/yyyy'}}</strong></div>

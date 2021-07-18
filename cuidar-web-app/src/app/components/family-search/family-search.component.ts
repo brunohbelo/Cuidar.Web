@@ -6,8 +6,10 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 import { distinctUntilChanged } from 'rxjs/operators';
+import { getEnumKeyByEnumValue } from 'src/app/helpers/enumHelper';
 import { FamilyStatusHelper } from 'src/app/helpers/familyStatusHelper';
 import { FamilyMemberFamilySearchResponse, FamilySearchDTO } from 'src/app/models/dtos/FamilySearchDTO';
+import { FamilyStatus } from 'src/app/models/enums/FamilyStatus';
 import { ActionPlanService } from 'src/app/services/ActionPlan.service';
 import { FamilyService } from 'src/app/services/Family.service';
 
@@ -50,11 +52,11 @@ export class FamilySearchComponent implements OnInit, OnDestroy {
     this.nameSearchChangeSubscription.unsubscribe();
   }
 
-  detailsClick(syndicanceCompleted: boolean, familyId: string): void {
-    if (syndicanceCompleted) {
+  detailsClick(familyStatus: FamilyStatus, familyId: string): void {
+    if (familyStatus !== getEnumKeyByEnumValue(FamilyStatus, FamilyStatus.PendingApproval)) {
       this.actionPlanService.LoadActionPlan(familyId).subscribe({
         next: (data) => {
-          if (data.actionList.length === 0) {
+          if (familyStatus === getEnumKeyByEnumValue(FamilyStatus, FamilyStatus.Active) && data.actionList.length === 0) {
             this.router.navigate(['/family-action-plan', familyId]);
           } else {
             this.router.navigate(['/family-menu', familyId]);
