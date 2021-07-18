@@ -28,12 +28,34 @@
           <td class="td-families-stats-number"><p class="number-text-num-2">{{childrenCount}}</p></td>
           <td class="td-families-stats-description"><p class="number-text-desc">criança{{childrenCount > 1 ? 's' : '' }}</p></td>
         </tr>
-        <tr *ngFor="let childrenGender of childrenByGender.entries()" >
+        <tr *ngFor="let childrenGender of childrenByGender.entries()">
           <td class="td-families-stats-number"><p class="number-text-num-3">{{childrenGender[1]}}</p></td>
           <td class="td-families-stats-description"><p class="number-text-desc-2">{{GetGenderText(childrenGender[0])}}</p></td>
         </tr>
+        <tr>
+          <td colspan="2">
+            <p class="number-text-desc" style="text-align: left;"><strong>Faixas etárias</strong></p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <div>
+              <ngx-charts-bar-vertical
+              [view]="[300,200]"
+              [results]="chartData"
+              [showXAxisLabel]="false"
+              [showYAxisLabel]="false"
+              [showDataLabel]="true"
+              [xAxis]="true"
+              [scheme]="colorScheme"
+              [gradient]="true">
+            </ngx-charts-bar-vertical>
+            </div>
+          </td>
+        </tr>
     </table>
   </div>
+  
   </mat-expansion-panel>
   <mat-expansion-panel>
     <mat-expansion-panel-header>

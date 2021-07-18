@@ -65,13 +65,45 @@ export class PlatformStatsFamiliesComponent implements OnInit {
               
               this.childrenByGender.set(obj.gender, objAges.count + currentCount);
             }
+
+            this.setChartData(objAges.age, objAges.count);
           });
         });
       }
     });
   } 
+   setChartData(age: number, count: number) {
+
+      var index: number = 0;
+
+      if (age <= 5){
+        index = 0;
+      }else if(age <= 10){
+        index = 1;
+      }else if(age <= 17){
+        index = 2;
+      }else if(age <= 30){
+        index = 3;
+      }else{
+        index = 4;
+      }      
+
+      this.chartData[index].value = this.chartData[index].value + count;
+   }
   
   public GetGenderText(value: string): string {
     return FamilyMemberGender[value as keyof typeof FamilyMemberGender];
   }
+
+  chartData = [
+    { name: '0-5', value: 0 },
+    { name: '6-10', value: 0 },
+    { name: '10-17', value: 0 },
+    { name: '18-30', value: 0 },
+    { name: '31+', value: 0 }
+  ];
+
+  colorScheme = {
+    domain: ['#A290EC', '#A290EC', '#AAAAAA']
+  };
 }

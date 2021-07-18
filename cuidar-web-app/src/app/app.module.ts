@@ -39,6 +39,7 @@ import { FamilyAttendeceComponent } from './components/family-attendece/family-a
 import { registerLocaleData } from '@angular/common';
 import { LOCALE_ID } from '@angular/core';
 import localeBr from '@angular/common/locales/pt';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 
 registerLocaleData(localeBr);
@@ -81,6 +82,7 @@ registerLocaleData(localeBr);
     MatCardModule,
     RxReactiveFormsModule,
     ScrollingModule,
+    NgxChartsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
