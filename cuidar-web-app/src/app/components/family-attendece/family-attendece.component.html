@@ -1,0 +1,55 @@
+<div class="family-attendence-container m-auto">
+    <app-nav-bar></app-nav-bar>
+    <form id="conteudo" class="mb-2 pl-2 pr-2" *ngIf="mainFamilyMember">
+        <div class="pl-2 pr-2 mb-2 d-flex justify-content-around">
+            <h1 class="mat-display text-center"><strong>Realizar atendimento</strong></h1>
+            <div class="family-status color-purple-light text-right pl-2 pr-2"
+                [ngStyle]="familyStatusHelper.getStatusCollor(familyStatusHelper.getFamilyStatus(family.mainFamilyMember.generalStatus))">
+                {{familyStatusHelper.getFamilyStatus(family.mainFamilyMember.generalStatus)}}
+            </div>
+        </div>
+        <div class="text-left color-purple-light">
+            Atendimento relizado em {{ attendenceDate | date: "dd 'de' MMMM 'de' yyyy" }}
+        </div>
+        <h4 class="text-left "><strong>Informe membros que serão atendidos</strong></h4>
+        <section class="family-member-list">
+            <div class="d-flex" *ngFor="let member of familyMembers">
+                <div class="w-20 text-left">
+                    <mat-icon class="account-icon" style="font-size: 50px;">account_circle</mat-icon>
+                </div>
+                <div class="w-70">
+                    <div class="w-80 text-left">
+                        <h3 class="mat-title-1 mb-0"><b>{{member.fullName}}</b></h3>
+                        <div class="color-purple-light">{{member.description}}</div>
+                    </div>
+                </div>
+                <div class="d-flex align-center">
+                    <mat-checkbox (change)="toogleMemberFlag(member, $event.checked)" [checked]="member.linked === true" [color]="'primary'">
+                    </mat-checkbox>
+                </div>
+            </div>
+        </section>
+        <h4 class="text-left mt-3 mb-0"><strong>Anotações</strong></h4>
+        <mat-form-field appearance="outline" class="mb-2 w-100">
+            <textarea matInput name="notes" name="txtCase" rows="10" placeholder="mensagem" [(ngModel)]="attendenceNotes" required>
+            </textarea>
+        </mat-form-field>
+        <h4 class="text-left mb-0"><strong>Plano de ações</strong></h4>
+        <div class="lista-acoes">
+            <div class="mt-2 mb-2" *ngFor="let item of actionPlanTaskList">
+                <mat-checkbox class="w-100 task-description" (change)="toogleItemFlag(item, $event.checked)" [checked]="item.done.toString() === 'Yes'" [color]="'primary'">
+                    {{item.description}}
+                </mat-checkbox>
+                <div class="d-flex justify-content-between pl-1 pr-1 task-footer">
+                    <span *ngIf="item.referencedFamilyMember_Id" class="text-left"><span class="font-italic">Membro: </span>{{item.referencedFamilyMember_Name}}</span>
+                    <span *ngIf="item.dueDate" class="text-right"><span class="font-italic">Até: </span>{{item.dueDate | date: 'dd/MM/yyyy'}}</span>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button  [disabled]="!FormValid()" class="pl-4 pr-4" id="btn-save-plan" (click)="Registrar_Click()" mat-flat-button mat-raised-button color="primary">
+                Registrar
+            </button>
+        </div>
+    </form>
+</div>

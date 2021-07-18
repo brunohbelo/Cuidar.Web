@@ -2,6 +2,7 @@ import { FamilyMemberNoYesFlag } from '../enums/FamilyMemberNoYesFlag';
 
 export class FamilyActionPlanItemDTO {
 
+    id!: string;
     description!: string;
     dueDate!: Date | undefined;
     // tslint:disable-next-line:variable-name

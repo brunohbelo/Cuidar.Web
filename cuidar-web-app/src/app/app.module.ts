@@ -35,7 +35,13 @@ import { ConfirmationComponent } from './components/modals/confirmation/confirma
 import { MatCardModule } from '@angular/material/card';
 import { PlatformStatsComponent } from './components/platform-stats/platform-stats.component';
 import { PlatformStatsFamiliesComponent } from './components/platform-stats-families/platform-stats-families.component';
+import { FamilyAttendeceComponent } from './components/family-attendece/family-attendece.component';
+import { registerLocaleData } from '@angular/common';
+import { LOCALE_ID } from '@angular/core';
+import localeBr from '@angular/common/locales/pt';
 
+
+registerLocaleData(localeBr);
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +59,8 @@ import { PlatformStatsFamiliesComponent } from './components/platform-stats-fami
     FamilySuspendPromoteComponent,
     ConfirmationComponent,
     PlatformStatsComponent,
-    PlatformStatsFamiliesComponent
+    PlatformStatsFamiliesComponent,
+    FamilyAttendeceComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +84,8 @@ import { PlatformStatsFamiliesComponent } from './components/platform-stats-fami
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
-    WebApiInterceptor
+    WebApiInterceptor,
+    { provide: LOCALE_ID, useValue: 'pt' }
   ],
   bootstrap: [AppComponent]
 })

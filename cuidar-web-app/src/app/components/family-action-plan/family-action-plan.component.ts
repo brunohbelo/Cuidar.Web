@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { pluck } from 'rxjs/operators';
 import { getEnumKeyByEnumValue } from 'src/app/helpers/enumHelper';
 import { FamilyStatusHelper } from 'src/app/helpers/familyStatusHelper';
@@ -41,10 +41,8 @@ export class FamilyActionPlanComponent implements OnInit {
   public get ActionPlanTaskAssistido(): Array<FamilyActionPlanItemDTO> {
     return this.actionPlanTaskList.filter(x => x.isAssistentTask.toString() === 'No');
   }
-
-  constructor(public dialog: MatDialog, private route: ActivatedRoute, private familyService: FamilyService
-    // tslint:disable-next-line:align
-    , private dataShare: DataShareService, private actionPlanService: ActionPlanService, private snackBar: MatSnackBar) {
+  // tslint:disable-next-line:max-line-length
+  constructor(public dialog: MatDialog, private route: ActivatedRoute, private familyService: FamilyService, private dataShare: DataShareService, private actionPlanService: ActionPlanService, private snackBar: MatSnackBar, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -144,6 +142,7 @@ export class FamilyActionPlanComponent implements OnInit {
         next: () => {
           if (index === this.actionPlanCreationTaskList.length - 1) {
             this.snackBar.open('Plano de ação criado com sucesso!', '', { duration: 2000 });
+            this.router.navigate(['/family-menu', this.mainFamilyMemberId]);
           }
 
           this.GetActionPlan();

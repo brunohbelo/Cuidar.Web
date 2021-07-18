@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CadastroFamiliaComponent } from './components/cadastro-familia/cadastro-familia.component';
 import { FamilyActionPlanComponent } from './components/family-action-plan/family-action-plan.component';
 import { FamilyApprovalReviewComponent } from './components/family-approval-review/family-approval-review.component';
+import { FamilyAttendeceComponent } from './components/family-attendece/family-attendece.component';
 import { FamilyMenuComponent } from './components/family-menu/family-menu.component';
 import { FamilySearchComponent } from './components/family-search/family-search.component';
 import { FamilySuspendPromoteComponent } from './components/family-suspend-promote/family-suspend-promote.component';
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'family-action-plan/:id', component: FamilyActionPlanComponent },
   { path: 'family-menu/:id', component: FamilyMenuComponent },
   { path: 'family-suspend-promote/:id', component: FamilySuspendPromoteComponent },
-  { path: 'platform-stats', component: PlatformStatsComponent }
+  { path: 'platform-stats', component: PlatformStatsComponent },
+  { path: 'family-attendence/:id', component: FamilyAttendeceComponent }
 ];
 
 @NgModule({

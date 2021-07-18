@@ -40,7 +40,7 @@
             <div class="mt-1">Previsão para término em {{mainFamilyMember.assistenceDueDate | date: 'dd/MM/yyyy'}}</div>
         </div>
         <div *ngIf="family.mainFamilyMember.generalStatus.toString() == 'Active'">
-            <button class="mt-2" mat-flat-button mat-raised-button color="primary">
+            <button class="mt-2" mat-flat-button mat-raised-button color="primary" [routerLink]="['/family-attendence', mainFamilyMemberId]" routerLinkActive="router-link-active">
                 Realizar atendimento
             </button>
         </div>
