@@ -1,0 +1,25 @@
+<mat-accordion multi>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h2 class=".panel-header-description">{{title}}</h2>
+      </mat-panel-title>
+      <mat-panel-description>
+        <h2 class="panel-header-number">{{attendancesStats.totalCount}}</h2>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div>
+      <table class="table-stats">
+        <tr>
+          <td>
+            <div>
+              <ngx-charts-bar-vertical [view]="[300,200]" [results]="chartData" [showXAxisLabel]="false"
+                [showYAxisLabel]="false" [showDataLabel]="true" [xAxis]="true" [scheme]="colorScheme" [gradient]="true">
+              </ngx-charts-bar-vertical>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

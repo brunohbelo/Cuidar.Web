@@ -1,7 +1,4 @@
-import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { getEnumKeyByEnumValue } from 'src/app/helpers/enumHelper';
-import { FamiliesGroupedGendersAndAgesDTO } from 'src/app/models/dtos/FamiliesGroupedGendersAndAgesDTO';
 import { FamiliesStatsDTO } from 'src/app/models/dtos/FamiliesStatsDTO';
 import { FamilyMemberGender } from 'src/app/models/enums/FamilyMemberGender';
 import { PlatformStats } from 'src/app/services/PlatformStats.service';

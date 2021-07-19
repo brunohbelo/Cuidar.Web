@@ -35,6 +35,7 @@ import { ConfirmationComponent } from './components/modals/confirmation/confirma
 import { MatCardModule } from '@angular/material/card';
 import { PlatformStatsComponent } from './components/platform-stats/platform-stats.component';
 import { PlatformStatsFamiliesComponent } from './components/platform-stats-families/platform-stats-families.component';
+import { PlatformStatsAttendanceComponent } from './components/platform-stats-attendances/platform-stats-attendances.component';
 import { FamilyAttendeceComponent } from './components/family-attendece/family-attendece.component';
 import { registerLocaleData } from '@angular/common';
 import { LOCALE_ID } from '@angular/core';
@@ -61,6 +62,7 @@ registerLocaleData(localeBr);
     ConfirmationComponent,
     PlatformStatsComponent,
     PlatformStatsFamiliesComponent,
+    PlatformStatsAttendanceComponent,
     FamilyAttendeceComponent
   ],
   imports: [
