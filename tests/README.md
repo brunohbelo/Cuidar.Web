@@ -11,9 +11,11 @@
 
 #### `familia1pessoa_precadastro_aprovacao_acoes_atendimento_promocao.side`
 
+ 0. Variáveis: Seta algumas variáveis que serão utilizadas ao longo do teste
  1. Gerador de pessoas: Copia os dados gerados no site [Gerador de documentos de pessoas (Nome, RG, CPF, CEP, Endereço, etc)](https://www.4devs.com.br/gerador_de_pessoas)
  2. Pré-cadastro de família de 1 membro
  3. Aprovação do Pré-cadastro
  4. Adicionando ações do assistente e do assistido
  5. Fazendo atendimento
- 6. Promovendo família
+ 6. Conferindo histórico de atendimentos
+ 7. Promovendo família

@@ -1,7 +1,7 @@
 {
   "id": "ac99440d-5756-4302-bfe7-3f8eb647eab8",
   "version": "2.0",
-  "name": "CuidarWebApp",
+  "name": "familia1pessoa_precadastro_aprovacao_acoes_atendimento_promocao",
   "url": "https://cuidar-web-jet.vercel.app/",
   "tests": [{
     "id": "60babf7b-6950-46a5-9b6a-f6885fb97848",
@@ -30,7 +30,7 @@
     }, {
       "id": "433b3b95-78a5-409f-8666-7b1bd68f90b9",
       "comment": "",
-      "command": "type",
+      "command": "sendKeys",
       "target": "id=mat-input-0",
       "targets": [
         ["id=mat-input-0", "id"],
@@ -43,7 +43,7 @@
     }, {
       "id": "f48ef080-9c8b-43e9-ae10-66f6043258c1",
       "comment": "",
-      "command": "type",
+      "command": "sendKeys",
       "target": "id=mat-input-1",
       "targets": [
         ["id=mat-input-1", "id"],
@@ -56,7 +56,7 @@
     }, {
       "id": "f7b32349-41de-4aa2-a296-1057438aba8f",
       "comment": "",
-      "command": "type",
+      "command": "sendKeys",
       "target": "id=mat-input-2",
       "targets": [
         ["id=mat-input-2", "id"],
@@ -94,11 +94,11 @@
       "command": "sendKeys",
       "target": "id=mat-input-3",
       "targets": [],
-      "value": "1500"
+      "value": "${renda_total_familia}"
     }, {
       "id": "5c4056e3-b0e3-4cab-b453-9b63ad673a70",
       "comment": "",
-      "command": "type",
+      "command": "sendKeys",
       "target": "id=mat-input-4",
       "targets": [
         ["id=mat-input-4", "id"],
@@ -107,7 +107,7 @@
         ["xpath=//div[@id='renda-occupation']/mat-form-field[2]/div/div/div[3]/input", "xpath:idRelative"],
         ["xpath=//div[2]/mat-form-field[2]/div/div/div[3]/input", "xpath:position"]
       ],
-      "value": "Desempregado"
+      "value": "${ocupacao}"
     }, {
       "id": "38c508f4-5ca6-41cf-a245-acaef108d1ce",
       "comment": "",
@@ -118,7 +118,7 @@
     }, {
       "id": "c5f0eedf-94ee-48af-8c0b-2b61eb767468",
       "comment": "",
-      "command": "type",
+      "command": "sendKeys",
       "target": "id=mat-input-6",
       "targets": [
         ["id=mat-input-6", "id"],
@@ -131,7 +131,7 @@
     }, {
       "id": "0b7c7327-be21-4e56-bf27-0e1b2194e677",
       "comment": "",
-      "command": "type",
+      "command": "sendKeys",
       "target": "id=mat-input-7",
       "targets": [
         ["id=mat-input-7", "id"],
@@ -144,7 +144,7 @@
     }, {
       "id": "0d9cb708-3312-4756-9c49-dfd0668ecb20",
       "comment": "",
-      "command": "//type",
+      "command": "sendKeys",
       "target": "id=mat-input-8",
       "targets": [],
       "value": "${endereco_complemento}"
@@ -173,7 +173,7 @@
     }, {
       "id": "e97f412d-0f80-4767-8bb1-3555fac303ac",
       "comment": "",
-      "command": "type",
+      "command": "sendKeys",
       "target": "id=mat-input-9",
       "targets": [
         ["id=mat-input-9", "id"],
@@ -253,7 +253,7 @@
       "value": "1975-10-27"
     }, {
       "id": "a0f314e2-a964-432f-8897-abb3c5e1ca00",
-      "comment": "",
+      "comment": "Mude a data na mão!",
       "command": "pause",
       "target": "4000",
       "targets": [],
@@ -261,7 +261,7 @@
     }, {
       "id": "3d3ab1ce-45ca-4934-a467-736dbd0aedd5",
       "comment": "",
-      "command": "type",
+      "command": "sendKeys",
       "target": "id=mat-input-11",
       "targets": [
         ["id=mat-input-11", "id"],
@@ -296,7 +296,7 @@
     }, {
       "id": "81cb18a7-592d-4968-a052-af44f866c64b",
       "comment": "",
-      "command": "//type",
+      "command": "sendKeys",
       "target": "id=mat-input-12",
       "targets": [],
       "value": "${notas}"
@@ -311,7 +311,7 @@
       "id": "fc2569dd-5fa0-4873-b1a4-00cc5aa7ca24",
       "comment": "",
       "command": "pause",
-      "target": "500",
+      "target": "${espera_load_pagina}",
       "targets": [],
       "value": ""
     }, {
@@ -339,7 +339,7 @@
       "id": "8b86b922-928c-487e-8ced-63b1fdcf5ced",
       "comment": "",
       "command": "pause",
-      "target": "500",
+      "target": "${espera_final_teste}",
       "targets": [],
       "value": ""
     }]
@@ -365,6 +365,13 @@
       ],
       "value": ""
     }, {
+      "id": "45d8f74c-d123-4cb0-9140-7a6fa8913785",
+      "comment": "",
+      "command": "pause",
+      "target": "${espera_carregar_busca}",
+      "targets": [],
+      "value": ""
+    }, {
       "id": "d90a4661-6e40-45fd-baa2-493cc6e71d39",
       "comment": "",
       "command": "click",
@@ -378,30 +385,25 @@
       ],
       "value": ""
     }, {
-      "id": "d38a3a67-23e2-49d9-ac32-e5b248cf5760",
+      "id": "60d444bf-428a-48ef-b7ef-564b3ec11394",
       "comment": "",
       "command": "sendKeys",
       "target": "id=mat-input-0",
       "targets": [],
       "value": "${nome}"
     }, {
-      "id": "611e379b-94f8-4101-b1fb-1680fa37d742",
+      "id": "8c56dfff-3e03-4263-a3da-c27f2c67a8fc",
       "comment": "",
       "command": "pause",
-      "target": "1000",
+      "target": "${espera_buscar_pessoa}",
       "targets": [],
       "value": ""
     }, {
-      "id": "21a10f38-2c4a-4756-b209-119c28dc6c90",
+      "id": "0e588f10-85df-4109-9467-ad6913f09290",
       "comment": "",
       "command": "assertText",
       "target": "css=b",
-      "targets": [
-        ["css=b", "css:finder"],
-        ["xpath=//div[@id='conteudo']/cdk-virtual-scroll-viewport/div/div/div/app-family-search-resume/div/div/div[2]/div/h3/b", "xpath:idRelative"],
-        ["xpath=//b", "xpath:position"],
-        ["xpath=//b[contains(.,'Camila Carolina Jennifer Jesus')]", "xpath:innerText"]
-      ],
+      "targets": [],
       "value": "${nome}"
     }, {
       "id": "251a0791-bde1-476a-b214-745150e3459d",
@@ -432,7 +434,7 @@
       "id": "4dc2faef-af10-4cc4-9aa2-6ccd9ff07263",
       "comment": "",
       "command": "pause",
-      "target": "1000",
+      "target": "${espera_load_pagina}",
       "targets": [],
       "value": ""
     }, {
@@ -465,7 +467,7 @@
       "id": "fde4a7e6-4318-4add-b5aa-3b11e7f686a0",
       "comment": "",
       "command": "pause",
-      "target": "500",
+      "target": "${espera_final_teste}",
       "targets": [],
       "value": ""
     }]
@@ -735,7 +737,7 @@
       "id": "7a11fb3c-f6a2-457f-94ad-4621eb19c627",
       "comment": "",
       "command": "pause",
-      "target": "500",
+      "target": "${espera_final_teste}",
       "targets": [],
       "value": ""
     }]
@@ -761,6 +763,13 @@
       ],
       "value": ""
     }, {
+      "id": "ac671d1e-5714-40f8-9256-dc722db5c983",
+      "comment": "",
+      "command": "pause",
+      "target": "${espera_carregar_busca}",
+      "targets": [],
+      "value": ""
+    }, {
       "id": "cd4661e8-7efc-4d9e-9879-132cf1e6ca99",
       "comment": "",
       "command": "click",
@@ -784,7 +793,7 @@
       "id": "3c584d98-7e20-49b5-a0c5-6c3cd559e255",
       "comment": "",
       "command": "pause",
-      "target": "1000",
+      "target": "${espera_buscar_pessoa}",
       "targets": [],
       "value": ""
     }, {
@@ -828,7 +837,7 @@
       "id": "37b1d934-97a8-46c9-8a12-54e627a53773",
       "comment": "",
       "command": "pause",
-      "target": "1000",
+      "target": "${espera_load_pagina}",
       "targets": [],
       "value": ""
     }, {
@@ -981,7 +990,7 @@
       "id": "0242c5ac-1d50-4978-b4fc-2eb354b58e18",
       "comment": "",
       "command": "pause",
-      "target": "500",
+      "target": "${espera_final_teste}",
       "targets": [],
       "value": ""
     }]
@@ -1007,6 +1016,13 @@
       ],
       "value": ""
     }, {
+      "id": "46efad94-e84c-4ebe-95c0-b6c48d9bc515",
+      "comment": "",
+      "command": "pause",
+      "target": "${espera_carregar_busca}",
+      "targets": [],
+      "value": ""
+    }, {
       "id": "d5ef34e0-b738-426d-be02-3be9f789ee85",
       "comment": "",
       "command": "click",
@@ -1030,7 +1046,7 @@
       "id": "494e3e5e-5983-408b-acdb-905da6b8b60b",
       "comment": "",
       "command": "pause",
-      "target": "1000",
+      "target": "${espera_buscar_pessoa}",
       "targets": [],
       "value": ""
     }, {
@@ -1074,7 +1090,7 @@
       "id": "0fcce64b-dc1a-415d-aeea-3cc47f8f2574",
       "comment": "",
       "command": "pause",
-      "target": "500",
+      "target": "${espera_load_pagina}",
       "targets": [],
       "value": ""
     }, {
@@ -1093,7 +1109,7 @@
       "id": "db07f3b9-b58b-48d4-a748-837b7f266363",
       "comment": "",
       "command": "pause",
-      "target": "500",
+      "target": "${espera_load_pagina}",
       "targets": [],
       "value": ""
     }, {
@@ -1110,17 +1126,10 @@
     }, {
       "id": "809ecaff-d394-408a-9fb2-1c42a9e470f7",
       "comment": "",
-      "command": "type",
+      "command": "sendKeys",
       "target": "id=mat-input-1",
-      "targets": [
-        ["id=mat-input-1", "id"],
-        ["name=txtCase", "name"],
-        ["css=#mat-input-1", "css:finder"],
-        ["xpath=//textarea[@id='mat-input-1']", "xpath:attributes"],
-        ["xpath=//form[@id='conteudo']/mat-form-field/div/div/div[3]/textarea", "xpath:idRelative"],
-        ["xpath=//textarea", "xpath:position"]
-      ],
-      "value": "Tudo certo!"
+      "targets": [],
+      "value": "${observacao_atendimento}"
     }, {
       "id": "8dbf37ee-5351-44ef-9d4e-9f744ec07df9",
       "comment": "",
@@ -1171,13 +1180,13 @@
       "id": "71267f24-514f-4200-8b6a-e28cc47d5518",
       "comment": "",
       "command": "pause",
-      "target": "500",
+      "target": "${espera_final_teste}",
       "targets": [],
       "value": ""
     }]
   }, {
     "id": "0236d112-5872-4838-ba62-9d7be15794d1",
-    "name": "6 - Promovendo família",
+    "name": "7 - Promovendo família",
     "commands": [{
       "id": "63f2cb2c-6b4e-4546-82ba-38709b514235",
       "comment": "",
@@ -1195,6 +1204,13 @@
         ["xpath=//button[2]", "xpath:position"],
         ["xpath=//button[contains(.,'Buscar assistido')]", "xpath:innerText"]
       ],
+      "value": ""
+    }, {
+      "id": "f20303d0-d996-47ce-baa4-961445281980",
+      "comment": "",
+      "command": "pause",
+      "target": "${espera_carregar_busca}",
+      "targets": [],
       "value": ""
     }, {
       "id": "dc6d7335-af5c-441f-abfa-ad7c9d1c47e0",
@@ -1220,7 +1236,7 @@
       "id": "55d0062b-9edc-4b50-92b0-1294cc802bba",
       "comment": "",
       "command": "pause",
-      "target": "1000",
+      "target": "${espera_buscar_pessoa}",
       "targets": [],
       "value": ""
     }, {
@@ -1264,7 +1280,7 @@
       "id": "f73b370c-bec4-4d66-a1a7-934cc0903d38",
       "comment": "",
       "command": "pause",
-      "target": "500",
+      "target": "${espera_load_pagina}",
       "targets": [],
       "value": ""
     }, {
@@ -1283,7 +1299,7 @@
       "id": "61d80d4c-6471-40c5-914d-91496e5f944a",
       "comment": "",
       "command": "pause",
-      "target": "500",
+      "target": "${espera_load_pagina}",
       "targets": [],
       "value": ""
     }, {
@@ -1329,6 +1345,13 @@
       ],
       "value": ""
     }, {
+      "id": "ec683b0e-0eb5-420e-9a81-98f1d63f1b9d",
+      "comment": "",
+      "command": "pause",
+      "target": "${espera_carregar_busca}",
+      "targets": [],
+      "value": ""
+    }, {
       "id": "49e06620-d1b6-4467-b95e-4a420056c477",
       "comment": "",
       "command": "sendKeys",
@@ -1336,10 +1359,10 @@
       "targets": [],
       "value": "${nome}"
     }, {
-      "id": "ec683b0e-0eb5-420e-9a81-98f1d63f1b9d",
+      "id": "a2fbcd7c-e6b5-40ed-b4f5-d621b1b3abce",
       "comment": "",
       "command": "pause",
-      "target": "1000",
+      "target": "${espera_buscar_pessoa}",
       "targets": [],
       "value": ""
     }, {
@@ -1369,7 +1392,219 @@
       "id": "4b147ac6-e16c-4af3-b2e6-7707e1eb83a2",
       "comment": "",
       "command": "pause",
-      "target": "500",
+      "target": "${espera_final_teste}",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "3c574f2f-d37e-4a7d-8113-c681873318f6",
+    "name": "0 - Variáveis",
+    "commands": [{
+      "id": "cdbdd012-e5c2-4047-8360-d857aa2a5ee2",
+      "comment": "",
+      "command": "store",
+      "target": "2000",
+      "targets": [],
+      "value": "espera_carregar_busca"
+    }, {
+      "id": "4fda5147-87f7-43bd-813c-d04a284d936b",
+      "comment": "",
+      "command": "store",
+      "target": "1500",
+      "targets": [],
+      "value": "espera_buscar_pessoa"
+    }, {
+      "id": "ae57578b-56f1-4a58-bc55-ee265eb74208",
+      "comment": "",
+      "command": "store",
+      "target": "1500",
+      "targets": [],
+      "value": "espera_load_pagina"
+    }, {
+      "id": "405f05bc-03d5-436d-bc1b-bc210a4dab2c",
+      "comment": "",
+      "command": "store",
+      "target": "1500",
+      "targets": [],
+      "value": "espera_final_teste"
+    }, {
+      "id": "ed99a84c-7e18-4bcb-a563-e44848b520db",
+      "comment": "",
+      "command": "store",
+      "target": "1800",
+      "targets": [],
+      "value": "renda_total_familia"
+    }, {
+      "id": "5ee5df0c-9360-4ba2-a06a-97c70e2afb95",
+      "comment": "",
+      "command": "store",
+      "target": "Desempregado",
+      "targets": [],
+      "value": "ocupacao"
+    }, {
+      "id": "87c1afae-9f64-47b6-b5d6-9d4e95d2524e",
+      "comment": "",
+      "command": "store",
+      "target": "Ap. 45",
+      "targets": [],
+      "value": "endereco_complemento"
+    }, {
+      "id": "c79c135b-04fb-4e6e-b9a9-2b3cd31830b1",
+      "comment": "",
+      "command": "store",
+      "target": "Católico",
+      "targets": [],
+      "value": "notas"
+    }, {
+      "id": "9ea8d547-cb47-4b9f-8d82-6e58f74d4dfe",
+      "comment": "",
+      "command": "store",
+      "target": "Tudo certo!",
+      "targets": [],
+      "value": "observacao_atendimento"
+    }]
+  }, {
+    "id": "33ade1f1-e059-417d-b190-233406feee65",
+    "name": "6 - Conferindo histórico de atendimentos",
+    "commands": [{
+      "id": "0ddb4320-3dfa-465d-bbf0-8d981c1d6504",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "02c0aaf1-9c07-484b-ae3a-5d3982552a9a",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//button[contains(.,'Buscar assistido')]",
+      "targets": [
+        ["css=.cdk-focused", "css:finder"],
+        ["xpath=//button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Buscar assistido')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "87c7b844-6650-4c15-a710-da5667cfdf30",
+      "comment": "",
+      "command": "pause",
+      "target": "${espera_carregar_busca}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9fb748ef-5e70-4a4d-aea5-3c36663907db",
+      "comment": "",
+      "command": "click",
+      "target": "id=mat-input-0",
+      "targets": [
+        ["id=mat-input-0", "id"],
+        ["css=#mat-input-0", "css:finder"],
+        ["xpath=//input[@id='mat-input-0']", "xpath:attributes"],
+        ["xpath=//div[@id='conteudo']/div/mat-form-field/div/div/div[3]/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ad725510-14b7-4a05-be3f-6a487e45b73f",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=mat-input-0",
+      "targets": [],
+      "value": "${nome}"
+    }, {
+      "id": "858d19a1-5a47-4c82-9981-af0076caa9fd",
+      "comment": "",
+      "command": "pause",
+      "target": "${espera_buscar_pessoa}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "52503c55-320c-4234-b2c1-f4898449bd0a",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=b",
+      "targets": [
+        ["css=b", "css:finder"],
+        ["xpath=//div[@id='conteudo']/cdk-virtual-scroll-viewport/div/div/div/app-family-search-resume/div/div/div[2]/div/h3/b", "xpath:idRelative"],
+        ["xpath=//b", "xpath:position"],
+        ["xpath=//b[contains(.,'Camila Carolina Jennifer Jesus')]", "xpath:innerText"]
+      ],
+      "value": "${nome}"
+    }, {
+      "id": "7a62c037-ec28-4b48-9ab7-6fa7d4233df4",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.status",
+      "targets": [
+        ["css=.status", "css:finder"],
+        ["xpath=//div[@id='conteudo']/cdk-virtual-scroll-viewport/div/div/div/app-family-search-resume/div/div/div[2]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div[2]", "xpath:position"]
+      ],
+      "value": "Ativo"
+    }, {
+      "id": "368dfff1-3da9-4c84-90e4-124711a14876",
+      "comment": "Ver detalhes",
+      "command": "click",
+      "target": "xpath=//button[contains(.,'Ver detalhes')]",
+      "targets": [
+        ["id=btn-familia-completa", "id"],
+        ["css=.ng-star-inserted:nth-child(1) > .ng-star-inserted > #btn-familia-completa", "css:finder"],
+        ["xpath=//button[@id='btn-familia-completa']", "xpath:attributes"],
+        ["xpath=//div[@id='conteudo']/cdk-virtual-scroll-viewport/div/div/div/button", "xpath:idRelative"],
+        ["xpath=//div/div/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Ver detalhes')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "685031b3-33bf-4c11-adac-c9303bc48c16",
+      "comment": "",
+      "command": "pause",
+      "target": "${espera_load_pagina}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7a2b7d15-24f0-47b3-9590-8b4caa9a2ce1",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//button[contains(.,'Histórico de atendimentos')]",
+      "targets": [
+        ["css=.mat-flat-button", "css:finder"],
+        ["xpath=//div[@id='conteudo']/div[5]/button", "xpath:idRelative"],
+        ["xpath=//div[5]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Histórico de atendimentos')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "72c6993c-9940-4463-bc00-8cb440adcdef",
+      "comment": "",
+      "command": "pause",
+      "target": "${espera_load_pagina}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "51d87c86-b924-473e-9592-a5d42483ad57",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.border-bottom > .text-left:nth-child(2)",
+      "targets": [
+        ["css=.border-bottom > .text-left:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='conteudo']/cdk-virtual-scroll-viewport/div/div/div/p", "xpath:idRelative"],
+        ["xpath=//p", "xpath:position"],
+        ["xpath=//p[contains(.,'Tudo certo!')]", "xpath:innerText"]
+      ],
+      "value": "${observacao_atendimento}"
+    }, {
+      "id": "5f11706c-a3f9-462c-8e28-4ee9cee1ae13",
+      "comment": "",
+      "command": "//assertText",
+      "target": "css=.text-left:nth-child(4)",
+      "targets": [],
+      "value": "${nome}"
+    }, {
+      "id": "42927a46-2836-4f1d-bb85-91a2bdc4466b",
+      "comment": "",
+      "command": "pause",
+      "target": "${espera_final_teste}",
       "targets": [],
       "value": ""
     }]
