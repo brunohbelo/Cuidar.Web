@@ -83,7 +83,7 @@ export class FamilySearchComponent implements OnInit, OnDestroy {
 
 class FamilyDataSource extends DataSource<FamilyMemberFamilySearchResponse | undefined> {
   private length = 1;
-  private pageSize = 2;
+  private pageSize = 10;
   private cachedData = Array.from<FamilyMemberFamilySearchResponse>({ length: this.length });
   private fetchedPages = new Set<number>();
   private searchingName = '';

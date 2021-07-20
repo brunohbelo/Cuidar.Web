@@ -7,6 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlatformStatsComponent implements OnInit {
   ngOnInit(): void {
-    
+
   }
 }

@@ -41,6 +41,7 @@ import { registerLocaleData } from '@angular/common';
 import { LOCALE_ID } from '@angular/core';
 import localeBr from '@angular/common/locales/pt';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { FamilyAttendanceHistoryComponent } from './components/family-attendance-history/family-attendance-history.component';
 
 
 registerLocaleData(localeBr);
@@ -63,7 +64,8 @@ registerLocaleData(localeBr);
     PlatformStatsComponent,
     PlatformStatsFamiliesComponent,
     PlatformStatsAttendanceComponent,
-    FamilyAttendeceComponent
+    FamilyAttendeceComponent,
+    FamilyAttendanceHistoryComponent,
   ],
   imports: [
     BrowserModule,
