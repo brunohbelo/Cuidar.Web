@@ -1,0 +1,25 @@
+<div class="family-attendence-history-container m-auto">
+    <app-nav-bar></app-nav-bar>
+    <div id="conteudo" class="mb-2 pl-2 pr-2">
+        <h1 class="mat-display mb-2"><strong>Histórico de atendimentos</strong></h1>
+        <div class="text-left color-purple-light">Classificado por data</div>
+        <cdk-virtual-scroll-viewport *ngIf="dataSource !== null" #viewPort itemSize="10"
+            [ngStyle]="{'height': getViewReportHeight()}">
+            <div *cdkVirtualFor="let attendance of dataSource">
+                <div class="border-bottom p-2 pt-0" *ngIf="attendance != null">
+                    <div class="d-flex justify-content-between">
+                        <h4 class="mb-0"><strong>Anotações:</strong></h4>
+                        <span class="color-purple-light">{{attendance.attendanceDateTime | date: "dd/MM/yyyy 'as'
+                            HH:mm"}}</span>
+                    </div>
+                    <p class="text-left">{{attendance.notes}}</p>
+                    <h4 class="mb-0 text-left"><strong>Membros atendidos:</strong></h4>
+                    <p class="text-left">{{(attendance.linkedFamilyMembersSummary) ? attendance.linkedFamilyMembersSummary : 'Nenhum' }}</p>
+                    <h4 class="mb-0 text-left"><strong>Ações:</strong></h4>
+                    <p class="text-left">{{attendance.linkedActionPlanItemsSummary}}</p>
+                </div>
+            </div>
+        </cdk-virtual-scroll-viewport>
+    </div>
+
+</div>

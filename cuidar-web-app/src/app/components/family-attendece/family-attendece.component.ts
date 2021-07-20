@@ -13,7 +13,7 @@ import { FamilyDTO } from 'src/app/models/dtos/FamilyDTO';
 import { FamilyMemberNoYesFlag } from 'src/app/models/enums/FamilyMemberNoYesFlag';
 import { MainFamilyMember } from 'src/app/models/MainFamilyMember';
 import { ActionPlanService } from 'src/app/services/ActionPlan.service';
-import { AttendenceService as AttendanceService } from 'src/app/services/Attendence.service';
+import { AttendenceService as AttendanceService } from 'src/app/services/Attendance.service';
 import { DataShareService } from 'src/app/services/DataShare.service';
 import { FamilyService } from 'src/app/services/Family.service';
 import { ConfirmationComponent } from '../modals/confirmation/confirmation.component';
