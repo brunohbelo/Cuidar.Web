@@ -252,7 +252,7 @@ $color-purple-light: #99879D;
 }
 
 .mb-1{
-    margin-bottom: $firstRem;
+    margin-bottom: $firstRem !important;
 }
 
 .mb-2{
@@ -260,11 +260,11 @@ $color-purple-light: #99879D;
 }
 
 .mb-3{
-    margin-bottom: $tirdhRem;
+    margin-bottom: $tirdhRem !important;
 }
 
 .mb-4{
-    margin-bottom: $forthRem;
+    margin-bottom: $forthRem !important;
 }
 
 

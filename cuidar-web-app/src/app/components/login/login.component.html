@@ -1,0 +1,18 @@
+<div class="login-container m-auto">
+    <form #formLogin id="conteudo" class="p-2 pt-4 mt-4">
+        <h1 class="mat-display text-center"><strong>Cuidar</strong></h1>
+        <div class="mt-4 mb-4">
+            <mat-form-field appearance="outline" class="w-80">
+                <mat-label>E-mail</mat-label>
+                <input name="email" type="email" [(ngModel)]="email" matInput required email>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="w-80">
+                <mat-label>Senha</mat-label>
+                <input name="password" type="password" [(ngModel)]="password" matInput required>                
+            </mat-form-field>
+        </div>
+        <button class="mt-3 pl-4 pr-4" (click)="Entrar_Click()" mat-flat-button mat-raised-button color="primary">
+            Entrar
+        </button>
+    </form>
+</div>

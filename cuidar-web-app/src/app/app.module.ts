@@ -42,6 +42,8 @@ import { LOCALE_ID } from '@angular/core';
 import localeBr from '@angular/common/locales/pt';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { FamilyAttendanceHistoryComponent } from './components/family-attendance-history/family-attendance-history.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthGuardService } from './services/AuthGuard.service';
 
 
 registerLocaleData(localeBr);
@@ -66,6 +68,7 @@ registerLocaleData(localeBr);
     PlatformStatsAttendanceComponent,
     FamilyAttendeceComponent,
     FamilyAttendanceHistoryComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -91,6 +94,7 @@ registerLocaleData(localeBr);
   ],
   providers: [
     WebApiInterceptor,
+    AuthGuardService,
     { provide: LOCALE_ID, useValue: 'pt' }
   ],
   bootstrap: [AppComponent]

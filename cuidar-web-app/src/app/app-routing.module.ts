@@ -9,11 +9,14 @@ import { FamilyMenuComponent } from './components/family-menu/family-menu.compon
 import { FamilySearchComponent } from './components/family-search/family-search.component';
 import { FamilySuspendPromoteComponent } from './components/family-suspend-promote/family-suspend-promote.component';
 import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
 import { PlatformStatsComponent } from './components/platform-stats/platform-stats.component';
+import { AuthGuardService } from './services/AuthGuard.service';
 
 // Rotas novas devem ser adicionadas aqui
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuardService] },
   { path: 'cadastro-familia', component: CadastroFamiliaComponent },
   { path: 'family-search', component: FamilySearchComponent },
   { path: 'family-sindicance/:id', component: FamilyApprovalReviewComponent },
@@ -22,7 +25,8 @@ const routes: Routes = [
   { path: 'family-suspend-promote/:id', component: FamilySuspendPromoteComponent },
   { path: 'platform-stats', component: PlatformStatsComponent },
   { path: 'family-attendance/:id', component: FamilyAttendeceComponent },
-  { path: 'family-attendance-history/:id', component: FamilyAttendanceHistoryComponent }
+  { path: 'family-attendance-history/:id', component: FamilyAttendanceHistoryComponent },
+  { path: 'login', component: LoginComponent }
 ];
 
 @NgModule({
