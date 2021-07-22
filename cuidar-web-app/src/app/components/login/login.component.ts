@@ -12,22 +12,21 @@ import { AuthService } from 'src/app/services/AuthService.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private authGuardService: AuthGuardService) { }
   @ViewChild(NgForm) formLogin!: NgForm;
 
   public email!: string;
   public password!: string;
 
   ngOnInit(): void {
+    this.authGuardService.removeToken();
   }
 
   Entrar_Click(): void {
 
     this.authService.Login(this.email, this.password).subscribe({
       next: (authInformationDTO: AuthInformationDTO) => {
-        AuthGuardService.token = authInformationDTO.token;
-        AuthGuardService.tokenExpirationDate = authInformationDTO.expirationDate;
-
+        this.authGuardService.setToken(authInformationDTO.token, authInformationDTO.expirationDate);
         this.router.navigate(['home']);
       }
     });

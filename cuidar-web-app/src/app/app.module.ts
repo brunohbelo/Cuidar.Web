@@ -19,7 +19,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { FamilyMemberResumeComponent } from './components/family-member-resume/family-member-resume.component';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FamilySearchComponent } from './components/family-search/family-search.component';
 import { WebApiInterceptor } from './interceptors/webApiInterceptor';
 import { FamilySearchResumeComponent } from './components/family-search/family-search-resume/family-search-resume.component';
@@ -93,8 +93,8 @@ registerLocaleData(localeBr);
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
-    WebApiInterceptor,
     AuthGuardService,
+    { provide: HTTP_INTERCEPTORS, useClass: WebApiInterceptor, multi: true },
     { provide: LOCALE_ID, useValue: 'pt' }
   ],
   bootstrap: [AppComponent]

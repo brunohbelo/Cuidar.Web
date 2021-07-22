@@ -1,12 +1,17 @@
-<div class="header">
-    <h1 class="mat-display-4">Cuidar</h1>
-    <h3>O que deseja fazer?</h3>
-</div>
-<div class="content">
-    <button [routerLink]="['/cadastro-familia']" routerLinkActive="router-link-active" mat-flat-button
-        color="primary" class="pt-1 pb-1">Cadastrar família</button>
-    <button [routerLink]="['/family-search']" routerLinkActive="router-link-active" mat-flat-button 
-        color="primary" class="pt-1 pb-1">Buscar assistido</button>
-    <button [routerLink]="['/platform-stats']" routerLinkActive="router-link-active" mat-flat-button 
-        color="primary" class="pt-1 pb-1">Ver estatísticas</button>
+<div class="container">
+    <div class="header">
+        <div class="pr-4 text-right">
+            <a [routerLink]="['/login']" routerLinkActive="router-link-active">sair</a>
+        </div>
+        <h1 class="mat-display-4">Cuidar</h1>
+        <h3>O que deseja fazer?</h3>
+    </div>
+    <div class="content">
+        <button [routerLink]="['/cadastro-familia']" routerLinkActive="router-link-active" mat-flat-button
+            color="primary" class="pt-1 pb-1">Cadastrar família</button>
+        <button [routerLink]="['/family-search']" routerLinkActive="router-link-active" mat-flat-button color="primary"
+            class="pt-1 pb-1">Buscar assistido</button>
+        <button [routerLink]="['/platform-stats']" routerLinkActive="router-link-active" mat-flat-button color="primary"
+            class="pt-1 pb-1">Ver estatísticas</button>
+    </div>
 </div>

@@ -1,9 +1,14 @@
 .container{
     background: #FAF9FE;
     text-align: center;
-    height: 100%;
-    width: 100%;
-    position: absolute;
+    max-width: 400px;
+    height: 600px;
+    margin: auto;
+}
+
+a{
+    color: gray;
+    text-decoration: none;
 }
 
 .header{
