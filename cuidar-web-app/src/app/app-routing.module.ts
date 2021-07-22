@@ -15,18 +15,18 @@ import { AuthGuardService } from './services/AuthGuard.service';
 
 // Rotas novas devem ser adicionadas aqui
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: '', component: HomeComponent, canActivate: [AuthGuardService] },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuardService] },
-  { path: 'cadastro-familia', component: CadastroFamiliaComponent },
-  { path: 'family-search', component: FamilySearchComponent },
-  { path: 'family-sindicance/:id', component: FamilyApprovalReviewComponent },
-  { path: 'family-action-plan/:id', component: FamilyActionPlanComponent },
-  { path: 'family-menu/:id', component: FamilyMenuComponent },
-  { path: 'family-suspend-promote/:id', component: FamilySuspendPromoteComponent },
-  { path: 'platform-stats', component: PlatformStatsComponent },
-  { path: 'family-attendance/:id', component: FamilyAttendeceComponent },
-  { path: 'family-attendance-history/:id', component: FamilyAttendanceHistoryComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'cadastro-familia', component: CadastroFamiliaComponent, canActivate: [AuthGuardService] },
+  { path: 'family-search', component: FamilySearchComponent, canActivate: [AuthGuardService] },
+  { path: 'family-sindicance/:id', component: FamilyApprovalReviewComponent, canActivate: [AuthGuardService] },
+  { path: 'family-action-plan/:id', component: FamilyActionPlanComponent, canActivate: [AuthGuardService] },
+  { path: 'family-menu/:id', component: FamilyMenuComponent, canActivate: [AuthGuardService] },
+  { path: 'family-suspend-promote/:id', component: FamilySuspendPromoteComponent, canActivate: [AuthGuardService] },
+  { path: 'platform-stats', component: PlatformStatsComponent, canActivate: [AuthGuardService] },
+  { path: 'family-attendance/:id', component: FamilyAttendeceComponent, canActivate: [AuthGuardService] },
+  { path: 'family-attendance-history/:id', component: FamilyAttendanceHistoryComponent, canActivate: [AuthGuardService] }
 ];
 
 @NgModule({
