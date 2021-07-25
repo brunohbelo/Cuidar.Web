@@ -5,7 +5,7 @@
   "url": "https://cuidar-web-jet.vercel.app/",
   "tests": [{
     "id": "60babf7b-6950-46a5-9b6a-f6885fb97848",
-    "name": "2. Pré-cadastro de família de 1 membro",
+    "name": "3. Pré-cadastro de família de 1 membro",
     "commands": [{
       "id": "f9744071-a4a8-42d4-9ae5-54447d90f18c",
       "comment": "",
@@ -354,7 +354,7 @@
     }]
   }, {
     "id": "961163e0-2041-4a59-a98a-d5a3273bfaae",
-    "name": "3. Aprovação do Pré-cadastro",
+    "name": "4. Aprovação do Pré-cadastro",
     "commands": [{
       "id": "7dd73fca-69af-425c-aa1f-3f27fbeb6839",
       "comment": "",
@@ -752,7 +752,7 @@
     }]
   }, {
     "id": "6a3e5cbf-c698-459b-9ec8-d59c5231ddc5",
-    "name": "4. Adicionando ações do assistente e do assistido",
+    "name": "5. Adicionando ações do assistente e do assistido",
     "commands": [{
       "id": "619bd78f-69ef-424d-b30e-352438ae9c19",
       "comment": "",
@@ -1005,7 +1005,7 @@
     }]
   }, {
     "id": "66d64200-9eb0-483f-97e6-c0e81bcc2709",
-    "name": "5. Fazendo atendimento",
+    "name": "6. Fazendo atendimento",
     "commands": [{
       "id": "7b65ae78-9792-46e1-8149-5471d3480125",
       "comment": "",
@@ -1195,7 +1195,7 @@
     }]
   }, {
     "id": "0236d112-5872-4838-ba62-9d7be15794d1",
-    "name": "7. Promovendo família",
+    "name": "8. Promovendo família",
     "commands": [{
       "id": "63f2cb2c-6b4e-4546-82ba-38709b514235",
       "comment": "",
@@ -1502,7 +1502,7 @@
     }]
   }, {
     "id": "33ade1f1-e059-417d-b190-233406feee65",
-    "name": "6. Conferindo histórico de atendimentos",
+    "name": "7. Conferindo histórico de atendimentos",
     "commands": [{
       "id": "0ddb4320-3dfa-465d-bbf0-8d981c1d6504",
       "comment": "",
@@ -1633,12 +1633,143 @@
     }, {
       "id": "5f11706c-a3f9-462c-8e28-4ee9cee1ae13",
       "comment": "",
-      "command": "//assertText",
+      "command": "assertText",
       "target": "css=.text-left:nth-child(4)",
-      "targets": [],
+      "targets": [
+        ["css=.text-left:nth-child(4)", "css:finder"],
+        ["xpath=//div[@id='conteudo']/cdk-virtual-scroll-viewport/div/div/div/p[2]", "xpath:idRelative"],
+        ["xpath=//p[2]", "xpath:position"],
+        ["xpath=//p[contains(.,'Emilly Ana Pereira')]", "xpath:innerText"]
+      ],
       "value": "${nome}"
     }, {
       "id": "42927a46-2836-4f1d-bb85-91a2bdc4466b",
+      "comment": "",
+      "command": "pause",
+      "target": "${espera_final_teste}",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "a1b76a40-0017-4c27-b6fb-606df1c4399b",
+    "name": "2. Login no app",
+    "commands": [{
+      "id": "5ac79512-dff6-4962-96ab-ab5688514de8",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "139a8497-d5fd-470c-b0d1-d9fe0accd513",
+      "comment": "",
+      "command": "pause",
+      "target": "${espera_load_pagina}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b218cf0a-4abe-4d9b-a8ad-70600bb1d86f",
+      "comment": "",
+      "command": "storeXpathCount",
+      "target": "xpath=//a[contains(.,'sair')]",
+      "targets": [],
+      "value": "n"
+    }, {
+      "id": "8642ce53-7547-46fe-b5c7-c0b1a8765bf0",
+      "comment": "",
+      "command": "echo",
+      "target": "${n}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a894510e-9c34-43bf-aeb4-22a05995f5a7",
+      "comment": "",
+      "command": "if",
+      "target": "${n} > 0",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2ac1bfdb-e970-4382-bcbb-f3f4fef08a74",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=sair",
+      "targets": [
+        ["linkText=sair", "linkText"],
+        ["css=a", "css:finder"],
+        ["xpath=//a[contains(text(),'sair')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/login')]", "xpath:href"],
+        ["xpath=//a", "xpath:position"],
+        ["xpath=//a[contains(.,'sair')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2be84a0b-3004-4235-ae6a-11643cd51e90",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=mat-input-0",
+      "targets": [],
+      "value": "cuidar@cuidarapi.com"
+    }, {
+      "id": "ddacaab3-fece-4525-8d20-351135ac8820",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=mat-input-1",
+      "targets": [],
+      "value": "cuidar"
+    }, {
+      "id": "4147c52d-d15c-411c-afeb-54068809f6c3",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//button[contains(.,'Entrar')]",
+      "targets": [
+        ["css=.mat-focus-indicator", "css:finder"],
+        ["xpath=//form[@id='conteudo']/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Entrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "9eacb41d-fdbe-4008-af70-caf73f61053a",
+      "comment": "",
+      "command": "else",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f6e28e35-2306-4c71-a6a1-543e35a9df1b",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=mat-input-0",
+      "targets": [],
+      "value": "cuidar@cuidarapi.com"
+    }, {
+      "id": "4cb602ca-e696-436c-a729-1737ea5b16d8",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=mat-input-1",
+      "targets": [],
+      "value": "cuidar"
+    }, {
+      "id": "3f890fbe-6956-42b8-91d7-c399a5bceecd",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//button[contains(.,'Entrar')]",
+      "targets": [
+        ["css=.mat-focus-indicator", "css:finder"],
+        ["xpath=//form[@id='conteudo']/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Entrar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ee997c94-bc25-430e-bbef-05eafa0fa427",
+      "comment": "",
+      "command": "end",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "dde4a1ea-20f9-4d0b-b90f-a5483308f24f",
       "comment": "",
       "command": "pause",
       "target": "${espera_final_teste}",

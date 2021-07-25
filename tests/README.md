@@ -13,12 +13,13 @@
 
  0. Variáveis
  1. Gerador de pessoas - membro principal
- 2. Pré-cadastro de família de 1 membro
- 3. Aprovação do Pré-cadastro
- 4. Adicionando ações do assistente e do assistido
- 5. Fazendo atendimento
- 6. Conferindo histórico de atendimentos
- 7. Promovendo família
+ 2. Login no app
+ 3. Pré-cadastro de família de 1 membro
+ 4. Aprovação do Pré-cadastro
+ 5. Adicionando ações do assistente e do assistido
+ 6. Fazendo atendimento
+ 7. Conferindo histórico de atendimentos
+ 8. Promovendo família
 
 
 #### `familia2pessoas_precadastro_reprovacao.side`
@@ -26,8 +27,9 @@
  0. Variáveis
  1. Gerador de pessoas - membro principal
  2. Gerador de pessoas - membro 2 (dependente)
- 3. Pré-cadastro de família de 2 membros
- 4. Reprovação do Pré-cadastro
+ 3. Login no app
+ 4. Pré-cadastro de família de 2 membros
+ 5. Reprovação do Pré-cadastro
  
  
  #### `familia3pessoas_precadastro_aprovacao_acoes_atendimento_suspensao.side`
@@ -36,12 +38,13 @@
  1. Gerador de pessoas - membro principal
  2. Gerador de pessoas - membro 2 (dependente)
  3. Gerador de pessoas - membro 3 (dependente)
- 4. Pré-cadastro de família de 3 membros
- 5. Aprovação do Pré-cadastro
- 6. Adicionando ações do assistente e do assistido
- 7. Fazendo atendimento
- 8. Conferindo histórico de atendimentos
- 9. Suspendendo família
+ 4. Login no app
+ 5. Pré-cadastro de família de 3 membros
+ 6. Aprovação do Pré-cadastro
+ 7. Adicionando ações do assistente e do assistido
+ 8. Fazendo atendimento
+ 9. Conferindo histórico de atendimentos
+ 10. Suspendendo família
  
  
  **OBS:**
